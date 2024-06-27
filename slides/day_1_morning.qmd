@@ -1,0 +1,821 @@
+---
+title: "Refresher"
+subtitle: "Some basics in Math and Probability"
+author: "Ben Spycher, Beatriz Vidondo"
+format: ctupres-revealjs
+# footer: |
+#         CTU Bern theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html).
+#         Code available on [GitHub](https://github.com/aghaynes/CTUquarto).
+chalkboard: false
+self-contained: true
+---
+
+## Topics for today
+
+::: columns
+::: column
+Some basic Math
+
+-   Sets
+-   Equations
+-   Functions
+-   Minimizing / maximizing a function
+-   Exponents and logarithms
+:::
+
+::: column
+Probability
+
+-   Basic rules in probability
+-   Conditional probability
+-   Random variables
+-   Probability distributions
+:::
+:::
+
+# Some basic Math
+
+## Sets
+
+::: columns
+::: column
+A collection of things
+
+![](Figures/Example_of_a_set.svg)
+:::
+
+::: column
+Other examples
+
+$\{1,2,3\}$
+
+$\{blue, grey, red\}$
+
+:::
+:::
+
+## Elements and subsets
+
+:::columns
+:::column
+**Elements** 
+
+$x \in A$ means that x belongs $A$ ("is an element of $A$")
+
+- $2 \in \{1,2,3\}$
+- but $4 \notin \{1,2,3\}$
+- If $x$ is the result of rolling a die, then $x \in \{1,2,...,6\}$.
+
+:::
+::: column
+**Subsets** 
+
+$A \subseteq B$ means that all elements in $A$ are also elements of $B$
+
+- $\{2,3 \} \subset \{1,2,3\}$ (proper subset)
+- $\{1,2,3 \} \subseteq \{1,2,3\}$
+- $\{3,4 \} \nsubseteq \{1,2,3\}$
+
+![](Figures/Venn_A_subset_B.svg){fig-align="center"}
+
+:::
+:::
+
+## Some important sets
+
+- **Empty set** $\emptyset$: contains no elements 
+- **Natural numbers** $\mathbb{N}=\{1,2,3,...\}$ 
+- **Integers** $\mathbb{Z}=\{...,-2, -1,0, 1,2,...\}$
+- **Real numbers** $\mathbb{R}=(-\infty, \infty)$
+
+**Intervals**: 
+
+$(a, b]$ is short for $\{x \in \mathbb{R} | a< x \le b \}$ (This reads: the set of all $x \in \mathbb{R}$ that satisfy the condition to the right of $|$)
+
+Analogously, we define $[a, b]$, $[a, b)$, $(a, b)$.
+
+
+## Combining sets
+
+$A=\{1,4,5\}$, $B=\{4,5,6\}$
+
+::: columns
+::: column
+**Union**
+
+$A\cup B= \{1,4,5,6\}$
+
+![](Figures/Venn_union.svg)
+:::
+
+::: column
+**Intersection**
+
+$A\cap B= \{4,5\}$
+
+![](Figures/Venn_intersection.svg)
+:::
+:::
+
+
+## Excluding sets
+
+$A=\{1,4,5\}$, $B=\{4,5,6\}$
+
+::: columns
+::: column
+**Complement**
+
+$A^{\mathrm{C}}=\{ 2,3 \} \cup \{6,7,... \}$ 
+
+All elements (of $U$) that do not belong to $A$. Here $U$ is some universal set e.g. the natural numbers in our example.
+
+![](Figures/Venn_complement.svg)
+:::
+
+::: column
+Set difference
+
+$A \backslash B= \{1\}$
+
+All elements of $A$ that do not belong to $B$
+
+![](Figures/Venn_difference.svg)
+:::
+:::
+
+
+## Solving equations - exercise
+
+On average, 40 out of 100 patients die if untreated and 20 out of 100 die if they receive treatment A. 
+
+How many patients do we need to treat with A to save one life (on average)?
+
+BTW: The number in question is called the *Number Needed to Treat (NNT)*.
+
+## Solving equations - solution
+Equality is preserved if we apply the same operations to both sides of the equation:
+
+\begin{align}
+\frac{20}{100} \cdot N &= \frac{40}{100} \cdot N -1\\
+\frac{20}{100} \cdot N - \frac{40}{100} \cdot N & =  -1\\
+\left(\frac{20}{100} - \frac{40}{100}\right) \cdot N & =  -1\\
+- \frac{20}{100}\cdot N & =  -1\\ 
+ N & = \frac{100}{20}= 5\\ 
+
+\end{align}
+
+## Capital-sigma notation for sums
+
+The short way of writing sums:
+
+Given a sequence of values, say $x_{1}=1,x_{2}=2, x_{3}=3$, do something with each of them (e.g. square them), and add together the results
+
+$$\sum_{i=1}^{3}x_{i}^2=1^2+2^2+3^2=1+4+9=14$$
+
+
+## Short exercise
+
+Given a sequence of values: $x_{1}=1, x_{2}=4,x_{3}=6, x_{4}=3, x_{5}=4$
+
+What is the following sum? $$\sum_{i=3}^{5}x_{i}=?$$
+
+What is the following sum? $$\sum_{i=1}^{3}(x_{i}^2-x_{i})=?$$
+
+## Short exercise - answer
+
+Sequence of values: $x_{1}=1, x_{2}=4,x_{3}=6, x_{4}=3, x_{5}=4$
+
+$$\sum_{i=3}^{5}x_{i}=6+3+4=13$$
+
+$$\sum_{i=1}^{3}(x_{i}^2-x_{i})=(1^2-1)+(4^2-4)+(6^2-6)=0+12+30=42$$
+
+## Capital-pi for products
+Similarly, a short way of writing products:
+
+$$\prod_{i=1}^{3}x_{i}^2=1^2\times2^2\times3^2=1\times4\times9=36$$
+
+## Exponentiation
+
+Exponentiation means multiplying a number (called the base) repeatedly with itself: $$z^n=\underbrace{z \times z \times \ldots \times z}_{n\ \text{times}} $$ As we all know $10^3=1000$\
+
+We can also exponentiate with the inverse $n$ which means taking the $n^{\text{th}}$-root: $$z^{\frac{1}{n}}=\sqrt[n]{z}$$ For example: $1000^{\frac{1}{3}}=10$
+
+## Exponentiation - important rules
+
+If $z$ is a positive number we can generalise exponetiation, allowing the exponent to be any number between $-\infty$ and $\infty$. For any two such exponents $a$ and $b$, we have:
+
+$$z^a \cdot z^b=z^{a+b}$$ and $$\frac{z^a}{z^b}=z^{a-b}$$ This is easy to see in following examples: $10^3 \cdot 10^2=10^5$ and $\frac{10^3}{10^2}=10^{3-2}=10^1=10$
+
+
+
+## Short exercise
+
+Based on these rules, what is
+
+$$z^0 =?$$
+
+## Short exercise - answer
+
+
+$$z^0 =z^{1-1}=\frac{z}{z}=1$$
+
+## Exponential growth - bacteria 
+
+Bacteria of a given strain divide every 20 minutes. 
+
+Assume that there are 10 bacteria in a culture medium. 
+
+- After 1 hour we have: $10 \cdot 2\cdot 2\cdot 2= 10 \cdot 2^3$
+- After 2 hours we have: $10 \cdot 2^3 \cdot 2^3= 10 \cdot 2^{3+3}$
+- ... After $t$ hours we have: $10 \cdot 2^{3 t}$
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+library(ggplot2)
+t=seq(0,6,1/3)
+ggplot(data.frame(t=t, pop=10*2^(3*t)),aes(x=t, y=pop)) +
+  geom_step(color="blue", size=1) +
+  ylab("Bacteria population") + xlab("t [hrs]") + 
+  geom_text(aes(label="N = 2'621'440 after 6 hours", x=2.3,y=1.8*10^6), size=8) +
+  theme(text = element_text(size=25))
+```
+
+## Exponential growth - money
+
+Say you have CHF 1000 on your bank account and the bank pays an interest rate of 5% annually. 
+
+- After 1 year you have: $1000 \cdot 1.05 =1,050$ 
+- After 2 years you have: $1000 \cdot 1.05^2=1,102.5$
+- ... After $t$ years you have: $1000 \cdot 1.05^{ t}$
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+
+t=0:30
+ggplot(data.frame(t=t, bal=1000*1.05^t),aes(x=t, y=bal)) +
+  geom_step(color="blue", size=1) +
+  ylab("Balance [CHF]") + xlab("t [hrs]") + 
+  geom_text(aes(label="CHF 4,321 after 30 years", x=10,y=3500), size=8) +
+  theme(text = element_text(size=25))
+```
+
+
+## Here with a better bank
+
+Suppose another bank pays a daily interest rate of  $\frac{1}{365} \cdot  5\%$: 
+
+- After 1 year you have: $1000 \cdot (1+\frac{1}{365} 0.05)^{365} =1,051$ 
+- After 2 years you have: $1000 \cdot (1+\frac{1}{365} 0.05)^{2\cdot 365}=1,105$
+- ... After $t$ years you have: $1000 \cdot (1+\frac{1}{365} 0.05)^{{t\cdot 365}}$
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+t<-seq(0,30, 1/365 )
+ggplot(data.frame(t=t, bal =1000*(1+0.05/365)^(t * 365)),aes(x=t, y=bal)) +
+  geom_step(color="blue", size=1) +
+  ylab("Balance [CHF]") + xlab("t [hrs]") +
+  geom_text(aes(label="CHF 4,481 after 30 years", x=10,y=3500), size=8) +
+  theme(text = element_text(size=25))
+```
+
+
+## An even better bank!
+
+As $n \rightarrow \infty$ the term  $(1+\frac{1}{n} 0.05)^{n}$ approaches $e^{0.05}$ where $e$ is Euler's number: $e \approx$ `r  exp(1)`.   
+
+This means that with a bank paying every second your balance would grow as $1000 \cdot e^{0.05\cdot t}$.
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+ggplot(data.frame(x=0:30),aes(x)) +
+  stat_function(fun=function(x) 1000*exp(0.05*x), color="blue", size=1) +
+  ylab("Balance [CHF]") + xlab("time [yrs]") + 
+  geom_text(aes(label="CHF 4,482 after 30 years", x=10,y=3500), size=8) +
+  theme(text = element_text(size=25))
+```
+
+
+
+## Functions
+
+A function converts an input to an output
+
+![[Source: Nykamp DQ, "Function machine."](http://mathinsight.org/image/function_machine)](Figures/function_machine.png)
+
+
+## Functions
+
+A bit more formally, a function assigns every element set A (domain) to exactly on element of set B (codomain). A and B can be the same.
+
+Example: the absolute value of a number $x$: $$f(x)=|x| = \begin{cases} x, & \text{if}\ x \geq 0 \\ -x, & \text{if}\ x < 0 \end{cases}$$
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-align: center
+ggplot(data.frame(x=-10:10),aes(x)) +
+  stat_function(fun=function(x) abs(x), color="blue", size=1) +
+  ylab("y=|x|") +
+  theme(text = element_text(size=25))
+```
+
+## Functions with multiple arguments
+
+Example: BMI is a function of height, $h$ (in m), and weight, $w$ (in kg): $$f(h,w)=w/h^{2}$$
+
+![nagualdesign, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:BMI_chart.png)](Figures/BMI_chart.png)
+
+## Polynomials
+
+General formula: $$a_{n}x^{n}+a_{n-1}x^{n-1}+\dotsb +a_{2}x^{2}+a_{1}x+a_{0}$$
+
+Example
+$$f(x)=2x^2+5x+ 1$$
+
+```{r, echo=FALSE, fig.width=3, fig.height=1.5, fig.align="center"}
+# We could use lines instead of points
+x<-seq(-5,2,length.out=100)
+y<-1+5*x+2*x^2
+par( mai=c(.4,.4,0,0))
+plot(x,y,type="l",xlim=c(-5,2),ylim=c(-5,20),col="blue", bty="n")
+text(1,15,"f(x)",col="blue")
+abline(v=0,lty=5)
+abline(h=0,lty=5)
+```
+
+## Polynomials
+Here some more examples:
+![](Figures/polynomial.jpeg)
+
+## Derivative of a function
+
+The derivative of a function $f(x)$, denoted $f'(x)$ or $\frac{df}{dx}(x)$, is the slope (tangent) of $f(x)$ at a given point $x$. 
+
+![](Figures/Tangent_to_a_curve.svg)
+
+## Derivatives of polynomials
+
+Derivatives of polynomials are particularly easy. Every term in the sum is multiplied with the exponent and the exponent is reduced by 1. The last term can simply be dropped as it is a constant and has zero slope: 
+
+$$f(x)=2x^2+5x+ 1$$
+
+$$f'(x)=\frac{df}{dx}=2\cdot2 x^1 + 1\cdot 5 x^0 =4x+5$$
+
+
+
+## Minimizing/Maximizing a function
+At a minumum or maximum of a function the slope has to be 0: 
+
+$$f'(x)=4x+5 \stackrel{!}{=}0$$
+solving for $x$ we get $x_{min}=-1.25$.
+
+```{r, echo=FALSE, fig.width=3, fig.height=1.5, fig.align="center"}
+# We could use lines instead of points
+x<-seq(-5,2,length.out=100)
+y<-1+5*x+2*x^2
+z=5+4*x
+par( mai=c(.4,.4,0,0))
+plot(x,y,type="l",xlim=c(-5,2),ylim=c(-5,20),col="blue", bty="n")
+text(1,15,"f(x)",col="blue")
+abline(v=0,lty=5)
+abline(h=0,lty=5)
+lines(x,z,type="l", col="red")
+text(1.5,5,"f'(x)",col="red")
+minx<--1.25
+abline(v=minx,lty=2, col="red")
+points(minx,1+5*minx+2*minx^2, col="blue",pch=19)
+```
+
+If the second derivative $f''(x)$ is positive (negative), as is the case here, we have minimum (maximum). 
+
+
+
+
+
+## Integral of a function
+The integral of $f(x)$ with respect to $x$ on an interval $[a,b]$ is the "area under the curve" between $a$ and $b$. We write: 
+
+$$\int_a^b f(x)dx$$
+
+![KSmrq, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Integral_example.svg)](Figures/Integral_example.svg)
+
+
+## The (natural) exponential function
+
+ $$f(x)=\text{exp}(x)=e^x$$
+The exponential function is the only function for which $f'(x)=f(x)$, i.e. the slope equals its value at every point $x$.
+
+```{r, echo=FALSE, fig.width=3, fig.height=1.5, fig.align="center"}
+# We could use lines instead of points
+x<-seq(-2,2,length.out=100)
+y<-exp(x)
+par( mai=c(.4,.4,0,0))
+plot(x,y,type="l",xlim=c(-2,2),col="blue", bty="n")
+text(.5,4,"f(x)",col="blue")
+#text(1,4,"f'(x)",col="red")
+#lines(x,y,lty=2, col="red")
+abline(v=0,lty=5)
+abline(h=0,lty=5)
+
+```
+
+
+## Logarithms
+Remember the bank paying an annual interest rate of $5\%$. Your initial balance was CHF 1,000. 
+
+How long will it take for your money to double? 
+
+- After 1 year you have: $1000 \cdot 1.05 =1,050$ 
+- After 2 years you have: $1000 \cdot 1.05^2=1,102.5$
+- ... After 14 year you have: $1000 \cdot 1.05^{14} =1,979.9$ 
+- After 15 years you have: $1000 \cdot 1.05^{15}=2,078.9$
+
+Between 14 and 15 years (if the money increased continuously throughout the year). 
+
+## Logarithms
+
+The logarithm of $x$ (must be > 0) to the base $b$, denoted $\log_b(x)$, is the number with which $b$ must be exponentiated to obtain $x$, i.e.
+
+$$b^y=x \iff  y=\log_b(x)$$
+
+In our example, we were looking for $\log_{1.05}(2)=14.2067$.
+
+
+## Working with logarithms
+
+Logarithms inherit their rules from exponentiation
+
+\begin{align}
+b^{y_1}\cdot b^{y_2} =b^{y_1 + y_2} &\implies \log_b(x_1 \cdot x_2)=\log_b(x_1)+\log_b(x_2) \\
+\frac{b^{y_1}}{b^{y_2}} =b^{y_1 - y_2} &\implies \log_b\left(\frac{x_1}{x_2}\right) = \log_b(x_1)-\log_b(x_2) \\
+(b^{y})^p =b^{y\cdot p}  &\implies\log_b\left(x^p \right)=p\log_b(x) 
+\end{align}
+
+
+## Easier to see this way
+
+Logarithms inherit their rules from exponentiation
+
+\begin{align}
+\log_{10}(10 \cdot 100) &=\log_{10}(10)+\log_{10}(100)=1+2=3 \\
+\log_{10}\left(\frac{100}{10}\right) &= \log_{10}(100)-\log_{10}(10) = 2-1=1 \\
+\log_{10}\left(10^2 \right) &= 2\log_{10}(10) = 2 \cdot 1=2
+\end{align}
+
+
+
+
+## Short exercise
+Calculate: 
+
+$$\log_2(8)=?$$
+$$\log_5(25^3)=?$$
+
+## Short exercise - answers
+
+$$\log_2(8)=3$$
+$$\log_5(25^3)=3\log_5(25)=3 \cdot 2=6$$
+
+
+## The (natural) logarithmic function
+The natural logarithm uses the base $e$ and is denoted $\ln(x)$:
+
+$$x=\exp(y)=e^y \iff y=\ln(x)$$
+
+The function $f(x)=\ln(x)$ is therefore the inverse of the exponential function: 
+
+```{r, echo=FALSE, fig.width=2.6, fig.height=2.6, fig.align="center"}
+# We could use lines instead of points
+x<-seq(-2,2,length.out=100)
+y<-exp(x)
+
+par( mai=c(.4,.4,0,0))
+plot(x,y,type="l",xlim=c(-2,2),ylim=c(-2,2),col="black", bty="n")
+text(-0.6,1,"exp(x)")
+text(1.2,-1,"f(x)=ln(x)",col="blue")
+#text(1.5,1.2,"f'(x)=1/x",col="red")
+lines(y,x, col="blue")
+#lines(y,1/y, col="red")
+abline(v=0,lty=5)
+abline(h=0,lty=5)
+
+```
+
+
+
+
+
+# Probability Fundamentals
+
+## What is probability?
+
+![[ICMA Photos](https://www.flickr.com/people/31418530@N02)](Figures/coin_toss.jpg)
+
+
+
+## Probability fundamentals
+
+Mathematically, we conceptualize probabilities using functions from event spaces to the interval $[0,1]$
+
+Example - Tossing a coin: 
+
+* Sample space $\Omega=\{H,T\}$  
+* Event space $\Sigma=\{\emptyset, \{H\},\{T\},\Omega\}$
+* Probability measure: 
+    + $P(\emptyset)=0$
+    + $P(\{H\})=1/2$
+    + $P(\{T\})=1/2$
+    + $P(\Omega)=1$
+
+
+## Probability fundamentals
+
+![Zyggystar, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Probability-measure.svg)](Figures/Probability-measure.svg)
+
+## Rolling a die
+
+\bcenter ![](./Figures/dice.jpg){width="50%"}\ecenter
+
+Sample space $\Omega=\{1,2,3,4,5,6\}$
+
+Every subset of $\Omega$ is an event:
+
+-   4: $A=\{4\}$
+-   An odd number: $B=\{1,3,5\}$
+-   A number greater than 3: $C=\{4,5\}$
+
+## Rolling a die
+
+\bcenter ![](./Figures/dice.jpg){width="50%"}\ecenter
+
+For a fair die (all sides equally probable), the probability of an event is simply the number of elements it comprises divided by the number elements in $\Omega$:
+
+-   4: $P(A)=P(\{4\})=\frac{1}{6}$
+-   An odd number: $P(B)=P(\{1,3,5\})=\frac{3}{6}=\frac{1}{2}$
+-   A number greater than 3: $P(C)=P(\{4,5\})=\frac{2}{6}=\frac{1}{3}$
+
+## Rolling two dice
+
+![Sascha Lill 95, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dice_measure.svg)](Figures/Dice_measure.svg)
+
+## Some important rules
+
+*   $P(\Omega) = 1$
+*   $P(A \text{ or } B) = P(A) + P(B)$ if the events $A$ and $B$ are mutually exclusive (i.e. $A \cap B=\emptyset$)  
+
+From these it follows (exercise) that: 
+
+*   $P(A^{\mathrm{C}})=1-P(A)$ 
+*   $P(\emptyset) = 0$
+
+Here $A^{\mathrm{C}}$ is the event that $A$ does *not* occur, also denoted $\overline{A}$ or $\neg{A}$.
+
+
+## Conditional probability
+*   $P(A \text{ and } B) = P(A|B) \cdot P(B)$ 
+
+We refer to $P(A|B)=\frac{P(A \text{ and } B)}{P(B)}$ as the *conditional probability of A given B*
+
+![by [Hossein Pishro-Nik](https://www.probabilitycourse.com/chapter1/1_4_0_conditional_probability.php)](Figures/conditional_b.png)
+
+
+## Short exercise
+Mr and Mrs Smith have two children one of which is a boy. 
+	
+	
+What is the probability that the other one is a girl? 
+
+## Short exercise - solution
+![](Figures/exercise_cond_prob.png)
+
+
+$$\frac{P(A \text{ and } B)}{P(B)}=\frac{2/4}{3/4}=\frac{2}{3}$$
+
+
+## Independence
+Two events $A$ and $B$ are *independent* if 
+
+$$P(A \text{ und } B)=P(A )\cdot P(B)$$ 
+
+It follows that $P(A|B)=P(A)$ and $P(B|A)=P(B)$.
+
+Example rolling two dice:
+
+*   $A$: Number on first die is even
+*   $B$: Number on first die is even
+*   $P(\text{both numbers even})=P(A )\cdot P(B)=1/2 \cdot 1/2 = 0.25$
+
+## Bayes' theorem {.smaller}
+$$ P(A\mid B)=\frac {P(B\mid A)P(A)}{P(B)}=\frac {P(B\mid A)P(A)}{P(B\mid A)P(A)+P(B\mid \neg A)P(\neg A)}$$
+
+Example breast cancer screening:
+
+*   $A$: Breast cancer
+*   $B$: Mamography test positive
+*   $P(A)=0.003$: Prevalence of breast cancer $0.3\%$
+*   $P(B \mid A)=0.87$: Sensitivity of test
+*   $P(B \mid \neg A)=0.03$: false positive rate (1-Specificity)
+
+Probability of cancer given positive test: 
+
+$$P(A\mid B)=\frac {0.87 \cdot 0.003}{0.87 \cdot 0.003+0.03 \cdot 0.997}=0.08=8\%$$
+
+## Random variables
+A (real-valued) random variable is a function from a sample space $\Omega$ to $\mathbb{R}$. 
+
+Examples:
+
+*  Sex coded as:  $\displaystyle Y={\begin{cases} 0,&{\text{if male}}\\ 1,& \text{if female} \end{cases}}$
+*  Faces of a die assigned to $Y \in \{1,..,6\}$
+*  Body height measured in cm: $Y \in (0,\infty)$
+
+The first two examples are *discrete random variables*, the last a *continuous random variable*.
+
+
+
+## Probability distributions of random variables
+The probabilities with which a random variable takes on specific values depends on the probabilities of the underling events.
+
+The probability distribution can be described by:  
+
+*   *probability mass function* for discrete random variables 
+
+*   *probability density function (pdf)* or the *cumulative distribution function (cdf)* for continuous random variables
+
+
+## Probability mass function
+Example rolling a single die: 
+
+*  Faces of a die assigned to $Y \in \{1,..,6\}$
+
+\bcenter ![](./Figures/dice.jpg){width="50%"}\ecenter
+
+```{r, echo=FALSE, fig.height=2,  fig.width=4}
+par(mai=c(0.8,0.8,0.1,0))
+plot(1:6,rep(1/6,6), xlab="Y", ylab="P(Y)", ylim=c(0,0.2))
+abline(h=1/6, lty=2, col="blue")
+text(1.5,1/6,"1/6", pos=1, col="blue", cex=1)
+```
+
+## Probability mass function - two dice
+Example rolling two dice: 
+
+*  Sum of values assigned to $S \in \{2,..,12\}$
+
+
+\bcenter ![](./Figures/two_dice.png){width="80%"}\ecenter
+
+
+## Probability density function (pdf)
+For a continuous random variables, the probability mass (1 in total) must be spread over a continuum. The pdf shows the "density of the probability" at a given location. 
+
+Probabilities are obtained by integration: $P(Y\in[a,b])=\int_a^b f_Y(y)dy$
+
+
+```{r}
+#|echo: false
+#|eval: true
+#|out.width: 80%
+#|fig.align: "center"
+limitRange <- function(fun, min=-Inf, max=Inf) {
+  function(x) {
+    y <- fun(x)
+    y[x < min  |  x > max] <- NA
+    return(y)
+  }
+}
+
+
+z<-c(1.5,3)
+
+ggplot() + 
+  stat_function(fun = dlnorm, color="blue", n=1000) +  
+#  geom_vline(xintercept = z, linetype="dashed", color ="blue") +
+  stat_function(fun = limitRange(dlnorm, min=z[1], max=z[2]), geom = "area", fill = "blue", alpha = 0.2, n=1000) + 
+  xlim(0,10) + ylab("f(y)") + xlab("y") + 
+  geom_text(aes(label=c("a","b"), x=z,y=-0.01), size=6) + 
+  theme(text = element_text(size=15))
+```
+
+
+## Cumulative distribution function (cdf)
+For a given value $y$, the cdf gives the probability that the random variable $Y$ takes on a value  $Y \le y$
+
+$$F_Y(y)=P(Y \le y)=\int_{-\infty}^y f_Y(t)dt$$
+
+![ShristiV [via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Combined_Cumulative_Distribution_Graphs.png)](Figures/pdf_cdf.png)
+
+
+## Expected value of a random variable
+The *expected value* $\operatorname {E}(Y)$ of a random variable $Y$ is its "average value"
+
+It is calculated as a probability weighted average all the possible outcomes. For a discrete random variable that can take on $k$ values:
+
+$$\operatorname {E}(Y)=\sum_{i=1}^{k}y_ip_i$$
+where $p_i=P(Y=y_i)$ (probability mass function)
+
+For the outcome of a roll of a fair die: 
+$\operatorname {E} [Y]=1\cdot {\frac {1}{6}}+2\cdot {\frac {1}{6}}+3\cdot {\frac {1}{6}}+4\cdot {\frac {1}{6}}+5\cdot {\frac {1}{6}}+6\cdot {\frac {1}{6}}=3.5$
+
+
+
+
+## Population mean and variance
+In statistics, the expected value is often referred to as the *mean* or *population mean* of a random variable and denoted 
+
+$$\mu_Y=\operatorname {E}(Y)$$
+The *variance* of a random variable is a measure how widely it varies around its mean: 
+
+$$\sigma_Y^2=\text{Var}(Y)=\operatorname {E}\left[(Y-\mu_Y)^2\right]$$
+
+
+
+
+## Rules for expected values
+For two random variables $X$ and $Y$ and an arbitrary number $a$ it can be shown that: 
+
+$$\operatorname {E}(aX)=a\operatorname {E}(X)$$
+$$\operatorname{E}(X+Y)=\operatorname{E}(X)+\operatorname{E}(Y)$$
+
+$$\text{Var}(aX)=a^2\text{Var}(X)$$
+For independent random variables $X$ and $Y$
+
+$$\text{Var}(X+Y)=\text{Var}(X)+\text{Var}(Y)$$
+$$\text{Var}(X-Y)=\text{Var}(X)+\text{Var}(Y)$$
+
+## Bernoulli distribution
+The Bernoulli distribution is the probability distribution of a random variable, say $Y$, that takes on the value 1 (success) with a given probability $\pi$ (success probability) and the value 0 (failure) with probability $1-\pi$. The probability mass function is: 
+
+$$f(y)=\begin{cases} \pi \text{ , if } y=1 \\ 1-\pi \text{ , if } y=0 \end{cases} $$
+
+
+_Quiz_: Can you find a formula for $f(y)$ that fits on one line?  
+
+::: {.incremental}
+-  _Solution_: $f(y)=\pi^y(1-\pi)^{(1-y)}$
+:::
+
+
+
+## Bernoulli distribution
+We can easily calculate the mean of a Bernoulli distributed value:
+
+$$\mu=1\cdot \pi+0\cdot (1-\pi)=\pi$$
+.. and the variance
+
+$$\sigma^2=(1-\pi)^2\cdot \pi+(0-\pi)^2\cdot (1-\pi)=\pi-\pi^2=\pi(1-\pi)$$
+
+## Binomial distribution
+If $n$ random variables $Y_i$ ($i=1,\ldots,n$) are independent draws from the Bernouilli distribution with parameter $\pi$, the random variable $K=\sum_{i=1}^n Y_i$ follows a *binomial distribution with parameters $n$ and $\pi$*. The probability mass function of is given by: 
+
+$$f(k)=\text{Pr}(K=k)= {n\choose k} \pi^k(1-\pi)^{(n-k)}$$
+Here ${n \choose k}$ (read as 'n choose k') is the binomial coefficient and represents the number of different subsets of size $k$ that can be drawn from $n$ elements.
+
+## Binomial distribution - example
+
+Let $k$ be the number of individuals developing the disease in a cohort of $n$ individuals assuming that the individual risk is $\pi$. Below we assume $\pi=0.2$ and $n=20$
+
+```{r, echo=FALSE, fig.width=3, fig.height=2.2, fig.align="center"}
+par( mai=c(.8,.8,0.1,0))
+pi<-0.2
+n <- 20
+k <- 1:n
+plot (k, dbinom(k, n, pi),  ylab = "f(k)", type="h", lwd=2,col="blue",xlim=c(0,20), bty="n")
+```
+
+## Normal distribution
+The normal distribution is a frequently used distribution for continuous random variables. In statistics, we rely heavily on the normal distribution. 
+
+The pdf of of normally distributed random variable $Y$  with mean $\mu$ and variance $\sigma^2$  is given by: 
+
+$$f(y)=\frac{1}{\sqrt{2\pi \sigma^2 }}e^{-\frac{1}{2}\frac{(y-\mu)^2}{\sigma^2}}$$
+
+
+
+## Normal distribution
+![ ](./Figures/normal_dist.png){fig-align="center"}
+
+
+
+## Means and variance 
+Means and variances of the distributions introduced so far: 
+
+Distribution | Mean | Variance
+----------|--------|---------
+Bernoulli | $\pi$ | $\pi(1-\pi)$
+Binomial | $\pi$ | $n\pi(1-\pi)$
+Normal | $\mu$ | $\sigma^2$
+
