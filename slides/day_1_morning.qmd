@@ -1,7 +1,7 @@
 ---
 title: "Refresher"
 subtitle: "Some basics in Math and Probability"
-author: "Ben Spycher, Beatriz Vidondo"
+author: "Carina Nigg, Judith Bouman"
 format: ctupres-revealjs
 # footer: |
 #         CTU Bern theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html).
