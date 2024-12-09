@@ -3,6 +3,8 @@ This github repository contains all content of the course ["Getting started with
 
 ## Recommended preparation before the start of the course 
 
+### Install R and Rstudio
+
 Course participants will bring their own laptops with installed versions of [R](https://www.r-project.org) and [RStudio](https://posit.co/products/open-source/rstudio):
 
 1. [Download](https://cloud.r-project.org) and install R:
@@ -12,3 +14,8 @@ Course participants will bring their own laptops with installed versions of [R](
 2. [Download](https://posit.co/download/rstudio-desktop) and install RStudio.
 
 **If you are new to R and RStudio, we recommend you to follow the 90-minute video tutorial [Introduction to R and RStudio](https://youtu.be/lL0s1coNtRk).**
+
+### Choose a dataset for the graded exercise
+
+During the course you will peform an exercise using a dataset you can choose yourself, this exercise will be graded (for 0.5 ECT) and determines whether you pass the course (pass or fail grading). 
+You can bring a dataset that you (will) use for your own research or a dataset that is freely available online. The dataset needs to have at least four variables where at least one is numerical and one is categorical. 
