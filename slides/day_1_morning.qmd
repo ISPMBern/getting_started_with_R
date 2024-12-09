@@ -9,62 +9,67 @@ format: ctupres-revealjs
 chalkboard: false
 self-contained: true
 ---
+
 # Introduction
-
-## Welcome
-
 
 ## Course content
 
 ::: columns
 ::: column
-Some basic Math
+*Introduction of R and RStudio*
 
--   Sets
--   Equations
--   Functions
--   Minimizing / maximizing a function
--   Exponents and logarithms
+-   Understanding R and RStudio
+-   Basic functions
+-   Write a first script
+-   Understanding packages
+-   Import data
+-   Basic functions on imported data
 :::
 
 ::: column
-Probability
+*Analyzing your own data*
 
--   Basic rules in probability
--   Conditional probability
--   Random variables
--   Probability distributions
+-   Organize your data
+-   Load your data into R
+-   Provide overview of your data
+-   Inspect missing data
+-   Check plausibility of your data
 :::
 :::
 
-## Sets
+## Why learn R?
 
-::: columns
-::: column
-A collection of things
+-   Reproducibility of your results
+-   Free software 
+-   A lot of resources available
+-   Potentially useful in further career
 
-![](Figures/Example_of_a_set.svg)
-:::
+## Installing R and RStudio
 
-::: column
-Other examples
+Means and variances of the distributions introduced so far:
 
-$\{1,2,3\}$
+| Distribution | Mean  | Variance      |
+|--------------|-------|---------------|
+| Bernoulli    | $\pi$ | $\pi(1-\pi)$  |
+| Binomial     | $\pi$ | $n\pi(1-\pi)$ |
+| Normal       | $\mu$ | $\sigma^2$    |
 
-$\{blue, grey, red\}$
+## Difference R and RStudio
 
-:::
-:::
+## Opening RStudio
 
+![Rstudio windows](figures/RStudio_Screenshot_Labels.png)
+https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html
 
+Let`s try!
 
+## Simple calculator
 
-## Means and variance 
-Means and variances of the distributions introduced so far: 
+```{r}
+#| label: simple calculator
+#| eval: true
+#| echo: true
 
-Distribution | Mean | Variance
-----------|--------|---------
-Bernoulli | $\pi$ | $\pi(1-\pi)$
-Binomial | $\pi$ | $n\pi(1-\pi)$
-Normal | $\mu$ | $\sigma^2$
+1 + 1 
 
+```
