@@ -1,6 +1,6 @@
 ---
 title: "Getting started with R - Code and exercises"
-author: "Dr. Carina Nigg"
+author: "Dr. Carina Nigg & Dr. Judith Boumann"
 date: 4 January 2025
 format:
   html:
@@ -80,12 +80,10 @@ for (dir in dirs) {
 
 # 2 Import data
 
-
-
 ```{r}
 #| include: FALSE
 
-# Preparation of NHANES dataset(2017-2018) for class
+# Preparation of NHANES dataset (2017-2018) for class
 
 ## 1 Demographic data
 nhanes_demo <- read_xpt(file.path(d_oridata, "DEMO_J.xpt"))
@@ -130,4 +128,11 @@ write_xlsx(nhanes, file.path(d_data, "nhanes_for_R.xlsx"))
 
 
 ```
+
+
+
+
+
+
+
 
