@@ -4,7 +4,6 @@ author: "Dr. Carina Nigg & Dr. Judith Boumann"
 date: 4 January 2025
 format:
   html:
-   code-fold: true
    toc: true
    toc-expand: 1
    toc-title: Contents
@@ -13,46 +12,61 @@ format:
    embed-resources: true
 ---
 
+# Introduction
 
-# Introduction and R setup
+The goal of this code and exercises is to...
 
+-   Import and inspect data in R
 
-Install and load packages
+-   Learn the basics of data cleaning and wrangling using tidyverse
 
-```{r packages}
-#| output: false
-#| warning: false
+-   Implement basic operations and summarizations in R
 
-# List of required packages
-packages <- c("haven", "tidyverse", "table1", "writexl")
+-   Gain hands-on experience through exercises
 
-# Function to check if a package is installed and install it if not
-install_if_missing <- function(package) {
-  if (!require(package, character.only = TRUE)) {
-    install.packages(package, dependencies = TRUE)
-  }
-  library(package, character.only = TRUE)
-}
+To achieve those goals, you will work data from the Nutrition Health and Nutrition Examination Survey (NHANES), a national survey that measures every few years health and nutrition of adults and children in the US, including survey data, health exams, and laboratory tests (<https://wwwn.cdc.gov/nchs/nhanes/>).Before we get started with importing the data, we have to prepare our environment.
 
-# Loop through each package and install if missing, then load the package
-for (pkg in packages) {
-  install_if_missing(pkg)
-}
+# Set-up R environment
 
+Essential steps to set-up your R-environment include
+
+-   Set directors
+
+-   Load required packages
+
+## Set directories
+
+The ISPM usually uses a similar folder structure, but check with your work group. We recommend that you use a consistent folder structure within your work group. This ensures that everyone can easily navigate everyone's folders, e.g., if a co-author has to do a revise & res-submit. **For research data, make sure to choose a folder on the ISPM-server - don't work with the data on your desktop!**
+
+A typical structure looks like this:
+
+-   **01_oridata**: Here you store all original files. DO NOT ALTER THIS DATA! It's essential that you can always come back to the original dataset. R doesn't overwrite original data unless you explicitly export an dataframe and use the same name as the original file. However, it still makes sense to have this folder so that everyone knows where the data is that you started originally with.
+
+-   **02_data:** It can make sense that you create a dataframe and export this, e.g., as an excel file. Maybe after you have run all your analysis, you want to store a final version of your dataset that you could also share with others, e.g., when providing a dataset together with your publication, or sharing it for meta-analysis.
+
+-   **03_script**: Here you should store all your R-script / markdown / qmd-files etc. In this class, we only work with one script. You could also create multiple scripts and connect them in a mother script, but we won't do this in this class due to simplicity.
+
+-   **04_output:** Here you store all your output files (e.g., tables, figures).
+
+To get started on this
+
+1.  Select a folder on your computer where you will set up the mentioned folder structure.
+
+2.  Open R. Go to the Tab File -\> New File -\> R Script
+
+3.  Copy the code below into your R script.
+
+4.  Replace the path in the code below with the path where you want to set up the folder structure. Run the code. Check in your folder if the structure was created. Check if your project root directory is set to the path you want it to be:
+
+```{r}
+getwd()
 ```
-
-
-Set system language to English
-
-```{r set english}
-Sys.setenv(LANG = "en")
-```
-
-Set directories
 
 ```{r set directories and project folders}
 
 # Set the project root directory
+
+# REPLACE THIS PATH WITH THE PATH WHERE YOU SET UP THE FOLDER STRUCTURE
 d_proj <- "C:/Users/cn23r745/OneDrive - Universitaet Bern/_Teaching/Introduction_to_R/Code/getting_started_with_R/data"
 
 # Basic folders
@@ -66,6 +80,8 @@ d_script <- file.path(d_proj, "03_script")
 d_output <- file.path(d_proj, "04_output")
 
 
+## This code below creates the folders in case you haven't set them up yet
+
 # Create a vector with all directories
 dirs <- c(d_oridata, d_data, d_script, d_output)
 
@@ -78,10 +94,102 @@ for (dir in dirs) {
 
 ```
 
-# 2 Import data
+5.  Save the script with a title of your choice in the folder "03_script". Click on File -\> Save as... -\> navigate to 03_script.
+
+## Install and load packages
+
+Install and load essential packages in the beginning. The easiest way to do this looks like this:
 
 ```{r}
+#| eval: false
+
+# Install package
+install.packages("tidyverse")
+
+# Load package
+library(tidyverse)
+
+```
+
+Due to the large number of R packages out there, it can happen that functions have the same name across different packages. Therefore, you should only load the packages that you really need for your analysis. You can also unload packages again:
+
+```{r}
+unloadNamespace("tidyverse")
+```
+
+### Exercise 1: Install & load package
+
+Install the package "pacman" and load it.
+
+```{r Exercise 1}
+#| code-fold: true
+#| code-summary: "Show code exercise 1"
+#| output: false
+
+# Install package
+# install.packages("pacman") # get rid of the # at the beginning of the line to run the code
+
+# Load package
+library(pacman)
+
+```
+
+If you have multiple R packages - which is typically the case - you can use the package "pacman" to load multiple packages simultanousely. The "p_load" ensures that packages which are not installed yet will be installed. Copy the code below into your R script and run it.
+
+```{r packages}
+#| output: false
+#| warning: false
+
+# Load all packages required for this class
+pacman::p_load(tidyverse, haven, table1, readxl, writexl) 
+
+```
+
+If you don't know what a package is for, there are several ways to find out:
+
+-   Using the "Help" rider in the Output pane and typing the package into the search field, which will provide you with a brief description
+
+-   Search for package details online in CRAN
+
+    ```{r}
+    #| eval: false
+    
+    browseURL(paste0("https://cran.r-project.org/package=", "packageName"))
+    ```
+
+-   Getting the help documentation of the package, which lists all functions and their description
+
+    ```{r}
+    #| eval: false
+  
+    help(package = "packageName")
+    ```
+
+### Exercise 2: Find package information
+
+Find out what the package "readxl" is used for. List two functions of the package
+
+```{r Exercise 2}
+#| code-fold: true
+#| code-summary: "Show code exercise 2"
+#| output: false
+
+# Description of haven
+browseURL(paste0("https://cran.r-project.org/package=", "readxl"))
+
+# List functions¨
+help(package = "readxl")
+
+```
+
+Now that we are set-up with the R environment, we can start to import our data.
+
+```{r NOT FOR CLASS PARTICIPANTS}
 #| include: FALSE
+#| output: FALSE
+
+# Set system language to English
+Sys.setenv(LANG = "en")
 
 # Preparation of NHANES dataset (2017-2018) for class
 
@@ -99,7 +207,7 @@ nhanes_body <- read_xpt(file.path(d_oridata, "BMX_J.xpt"))
 dim(nhanes_body)
 
 body <- nhanes_body %>% # select only relevant variables
-        select(SEQN, BMXWT, BMXHT, BMXBMI)
+        select(SEQN, BMXWT, BMXHT)
 
 # blood pressure
 nhanes_bloodpressure <- read_xpt(file.path(d_oridata, "BPX_J.xpt"))
@@ -129,10 +237,231 @@ write_xlsx(nhanes, file.path(d_data, "nhanes_for_R.xlsx"))
 
 ```
 
+# Import & check data structure
 
+## Import
 
+We will now import the NHANES dataset to work with using the readxl package. Before doing this, download the excel file "nhanes_for_R.xlsx" and save it to your folder "02_data".
 
+Copy the code into your script and run the code. We will assign the table that we import to the object "nhanes".
 
+```{r import excel}
 
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"))
 
+```
 
+There are more options what we can specify when importing excel files, such as specifying certain columns or cells, or defining missing values. See the code below for what you could do.
+
+```{r import excel options}
+#| eval: false
+
+# sheet: Specify the sheet name or number.
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), sheet = 1)
+
+# range: Import a specific range of cells.
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), range = "A1:D100")
+
+# col_names: Specify if the first row contains column names.
+# TRUE (default): First row is used as column names.
+# FALSE: R assigns default column names (X1, X2, etc.).
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), col_names = FALSE)
+
+# skip: Skip the first n rows
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), skip = 3)
+
+# na: Define missing values.
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), na = c("NA", "99"))
+
+```
+
+There are other packages and functions for importing other data formats. Most common are:
+
+-   **csv-files**: read.csv() (Base R) or read_csv() (readr)
+
+-   **STATA, SAS, SPSS** (haven): read_dta (Stata files), read_sav() (SPSS files), read_sas (SAS files)
+
+### Exercise 3: Import data
+
+1.  Download the data "BMX_J.xpt" from GitHub and put it into your "01_oridata" folder. This is the original data file from the NHANES dataset that contains all body measures (e.g., height, weight).
+
+2.  Find out which package you need to import an xpt-file.
+
+3.  Import the file in R and assign it to the object "nhanes_body".
+
+    ```{r exercise 3}
+    #| code-fold: true
+    #| code-summary: "Show code exercise 3"
+    #| output: false
+
+    nhanes_body <- read_xpt(file.path(d_oridata, "BMX_J.xpt"))
+
+    ```
+
+## Checking data structure
+
+After you imported your data, you may want to check your data structure and get an overview. There different ways to do this:
+
+-   **Dimensions**: Check number of rows and columns
+
+    ```{r}
+    #| eval: FALSE
+
+    # Dimensions (rows and columns)
+    dim(yourdata)
+
+    # Number of rows only
+    nrow(yourdata)
+
+    # Number of columns only
+    ncol(yourdata)
+    ```
+
+-   **Column names**: List the names of all variables
+
+    ```{r}
+    #| eval: FALSE
+
+    colnames(yourdata)
+    ```
+
+-   **Data structure**: Provides overview of dataset structure, including variable types and the first few observations
+
+    ```{r}
+    #| eval: FALSE
+
+    # option 1
+    str(yourdata)
+
+    # option 2
+    glimpse(yourdata)
+    ```
+
+-   **Quick summary of each variable**: Gives you summary statistics for each column, including missings
+
+    ```{r}
+    #| eval: FALSE
+
+    summary(yourdata)
+    ```
+
+-   **Data preview**: View the first view or last few rows of your dataset
+
+    ```{r}
+    #| eval: FALSE
+
+    # first 6 rows
+    head(yourdata)
+
+    # last 6 rows
+    tail(yourdata)
+
+    # You can append this argument to specify the first/last number of rows you want to see:
+    head(yourdata, n = 10)
+    ```
+
+-   **Check class / variable type** of your dataset / columns
+
+    ```{r}
+    #| eval: FALSE
+
+    # Class of the entire dataset
+    class(yourdata)
+
+    # Class of a specific column
+    class(yourdata$variable)
+
+    # Data types of all columns
+    sapply(yourdata, class)
+
+    ```
+
+### Exercise 4: Checking data structure of NHANES
+
+Check the data structure of NHANES. Find out about the following:
+
+1.  How many columns does the dataset have?
+
+2.  How many rows?
+
+3.  Use one of the functions to get an overview of your data
+
+4.  What is the median age in your dataset? (variable "RIDAGEYR)
+
+5.  How many missings has body weight? (variable "BMXWT")
+
+6.  What is the ID of participant in line 14? (variable "SEQN")
+
+```{r exercise 4}
+#| code-fold: true
+#| code-summary: "Show code exercise 4"
+#| output: false
+
+# 1. How many columns does the dataset have?
+# 15 columns
+dim(nhanes)
+ncol(nhanes)
+
+# 2. How many rows?
+# 9254 rows
+dim(nhanes)
+nrow(nhanes)
+
+# 3. Use one of the functions to get an overview of your data
+str(nhanes) # option 1
+glimpse(nhanes) # option 2
+
+# 4. What is the median age in your dataset? (variable "RIDAGEYR)
+# 31 years
+summary(nhanes)
+
+# 5. How many missings has body weight? (variable "BMXWT")
+# 684
+summary(nhanes)
+
+# 6. What is the ID of participant in line 14? (variable "SEQN")
+# 93716
+head(nhanes, n = 14)
+```
+
+## Check missings
+
+Checking for missings is an essential step when importing your data. We have a small number of variables in this dataset, so you can already perform this check at this stage. If you have more variables, e.g., a large datasets with hundreds of variables/columns, it doesn't make sense to check missings for all those variables. Then it makes sense to first select the relevant variables (see next section), and then check the missings.
+
+**Check for missing values**: Summarize missing values in the dataset
+
+```{r}
+#| eval: FALSE
+
+# Total missing values
+sum(is.na(yourdata))
+
+# Missing values per column
+colSums(is.na(yourdata))
+
+# Missing values for a specific variable
+sum(is.na(yourdata$variable))
+
+```
+
+### Exercise 5: Check missing in NHANES
+
+Check the number of missings for all variables in the NHANES dataset.
+
+1.  What is the variable with the highest number of missings?
+2.  Check missings only for the variable body weight (BMXWT).
+
+```{r Exercise 5}
+#| code-fold: true
+#| code-summary: "Show code exercise 5"
+#| output: false
+
+# 1. What is the variable with the highest number of missings?
+# SMQ040 (Current smoking)
+colSums(is.na(nhanes))
+
+# 2. Check missings only for the variable body weight (BMXWT)
+# 684
+sum(is.na(nhanes$BMXWT))
+
+```
