@@ -53,7 +53,7 @@ Set directories
 ```{r set directories and project folders}
 
 # Set the project root directory
-d_proj <- "C:/Users/cn23r745/OneDrive - Universitaet Bern/_Teaching/Introduction_to_R/Code/getting_started_with_R/code"
+d_proj <- "C:/Users/cn23r745/OneDrive - Universitaet Bern/_Teaching/Introduction_to_R/Code/getting_started_with_R/data"
 
 # Basic folders
 # Directory for original data
