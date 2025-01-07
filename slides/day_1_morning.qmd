@@ -12,15 +12,30 @@ self-contained: true
 
 # Introduction
 
+## Disclaimer
+
+::: {}
+This is an introduction course and we expect no prior knowledge 
+:::
+::: {}
+Adjust your speed to your own level  
+:::
+::: {}
+Ask questions at any time
+:::
+::: {}
+Tell us if you are bored or overwhelmed
+:::
+
 ## Course content
 
 ::: columns
 ::: column
-*Introduction of R and RStudio*
+*Introduction to R and RStudio*
 
 -   Understanding R and RStudio
 -   Basic functions
--   Write a first script
+-   Write a script
 -   Understanding packages
 -   Import data
 -   Basic functions on imported data
@@ -37,31 +52,51 @@ self-contained: true
 :::
 :::
 
+## The program
+
+| Time | Topic | 
+|--------------|-------|
+| 27th 9.00 - 9.30    | R and RStudio, why? | 
+| 27th 9.00 - 9.30    |  | 
+| 27th 9.00 - 9.30    |  | 
+
+## Final exercise 
+
+*   Choose your own dataset 
+*   Organize your data folder  
+*   Read data into R environment using an r script  
+*   Select 4 variables (at least one numerical and one categorical) 
+*   Find out what classes your variables have and correct them to the most sensible class if necessary 
+*   Check for missing values for all variables 
+*   Give summary statistics 
+  +   For vector/categorical variables give table with count and percentages 
+  +   For numerical variables give a table with mean/median, sd, min, max 
+*   Visualize  
+  +   For numerical: histogram/boxplot 
+  +   For categorical: bar 
+  
+Grading: Pass or fail (0.5 ECT)
+
 ## Why learn R?
 
 -   Reproducibility of your results
--   Free software 
+-   Free software (unlike stata or SPSS)
 -   A lot of resources available
 -   Potentially useful in further career
 
 ## Installing R and RStudio
 
-Means and variances of the distributions introduced so far:
-
-| Distribution | Mean  | Variance      |
-|--------------|-------|---------------|
-| Bernoulli    | $\pi$ | $\pi(1-\pi)$  |
-| Binomial     | $\pi$ | $n\pi(1-\pi)$ |
-| Normal       | $\mu$ | $\sigma^2$    |
+Did you all manage to install R and RStudio?
 
 ## Difference R and RStudio
 
+![](figures/Rstudio_to_R.png)
+
 ## Opening RStudio
 
-![Rstudio windows](figures/RStudio_Screenshot_Labels.png)
-https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html
+![](figures/RStudio_Screenshot_Labels.png)
 
-Let`s try!
+# Basic concepts in R 
 
 ## Simple calculator
 
@@ -73,3 +108,277 @@ Let`s try!
 1 + 1 
 
 ```
+
+## Using a script
+
+:::{}
+* Track code
+* Make changes
+* Repeat code (reproducability of science)
+:::
+:::{}
+Now, you can download, save and open the "follow_along_script_monday_morning.R"
+:::
+
+
+## Saving "objects"
+
+```{r}
+#| label: save object
+#| eval: true
+#| echo: true
+
+a = 1 
+b = 2
+c = a + b
+
+# can use = or "<-"
+
+c <- a + b 
+
+c
+
+```
+
+## Vector
+
+```{r}
+#| label: introduce vector
+#| eval: true
+#| echo: true
+
+c(1,2,3)
+
+c(a, b)
+
+```
+
+## Vector
+
+How to access an element in the vector
+
+```{r}
+#| label: introduce vector 2
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+a_vector[4]
+
+```
+
+## Array/matrix
+
+```{r}
+#| label: introduce array/matrix
+#| eval: true
+#| echo: true
+
+matrix(data = c(1,2,3,4,5,6,7,8), nrow = 4 )
+
+```
+## Array/matrix
+
+How to access an element from a matrix
+
+```{r}
+#| label: introduce array/matrix 2
+#| eval: true
+#| echo: true
+
+a_matrix = matrix(data = c(1,2,3,4,5,6,7,8), nrow = 4 )
+
+a_matrix[3,2] # first row, then column
+
+```
+
+## Using "functions"
+
+```{r}
+#| label: using functions
+#| eval: true
+#| echo: true
+
+sum(1, 2)
+
+sum(a , b)
+
+?sum
+
+```
+
+## Getting help with functions
+
+```{r}
+#| label: using functions 2
+#| eval: true
+#| echo: true
+
+?sum
+
+```
+
+## Let`s try!
+
+Can you calculate the following for "a_vector"?
+
+* Mean
+* Standard deviation
+* Maximal value
+* Minimal value
+* Length of the vector
+
+```{r}
+#| label: using functions 3
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+```
+
+Take 15 minutes to try
+
+## Let`s try! - Solution
+
+```{r}
+#| label: using functions 4
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+mean(a_vector)
+sd(a_vector)
+max(a_vector)
+min(a_vector)
+length(a_vector)
+
+```
+
+
+## Classes and types
+
+Numeric and character
+
+```{r}
+#| label: introduce vectors
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+class(a_vector)
+
+b_vector = c("something", "something else", "another thing", "completely differnt")
+
+class(b_vector)
+
+```
+
+## Classes and types
+
+Logical
+
+```{r}
+#| label: introduce vector 3
+#| eval: true
+#| echo: true
+
+c_vector = c(F, T, T,T, F, T, F, T)
+
+class(c_vector)
+
+```
+
+## Dataframe 
+
+```{r}
+#| label: dataframe
+#| eval: true
+#| echo: true
+
+# Create a data frame
+df <- data.frame(x = 1:3, y = c("a", "b", "c"))
+
+# Printing
+print(df)
+
+```
+
+## Tibble 
+
+```{r}
+#| label: tibble
+#| eval: true
+#| echo: true
+
+# Create a tibble
+library(tibble)
+tb <- tibble(x = 1:3, y = c("a", "b", "c"))
+
+print(tb)
+
+```
+
+## Packages
+
+Get access to specific set of functions
+
+```{r}
+#| label: packages
+#| eval: true
+#| echo: true
+
+#install.packages("tidyverse")
+library(tidyverse)
+
+```
+
+run "library()" every time you want to use any function from this package
+
+Let's try!
+
+# Get your data in R
+
+## Organize your data
+
+![project_dir](figures/Project_directory.png)
+
+## Organize your data
+
+Choose your working directory
+
+```{r}
+#| label: working directory
+#| eval: true
+#| echo: true
+
+getwd() 
+
+setwd("/Users/jb22m516/Documents/GitHub/getting_started_with_R/")
+
+```
+
+## "Path" to file in R
+
+A "path" tells R where it can find your data 
+
+## Functions for loading data
+
+```{r}
+#| label: loading_data
+#| eval: true
+#| echo: true
+
+#install.packages("utils")
+library(utils)
+
+#data = read.csv2()
+
+```
+
+## Types of data in R 
+
+tibble / dataframe / matrix / array 

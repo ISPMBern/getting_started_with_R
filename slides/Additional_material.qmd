@@ -1,0 +1,22 @@
+---
+title: "Getting started with R"
+subtitle: "Additional material if time allows"
+author: "Carina Nigg, Judith Bouman"
+format: ctupres-revealjs
+# footer: |
+#         CTU Bern theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html).
+#         Code available on [GitHub](https://github.com/aghaynes/CTUquarto).
+chalkboard: false
+self-contained: true
+---
+
+# Basic programming tools
+
+## If-statements
+
+## For-loop
+
+## While-loop 
+
+# More complex visualisations
+
