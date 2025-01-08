@@ -292,6 +292,40 @@ class(c_vector)
 
 ```
 
+## Classes and types
+
+factor
+
+```{r}
+#| label: introduce vector 4
+#| eval: true
+#| echo: true
+
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+class(gender)
+
+```
+
+## Combining different types of vectors
+
+Lists
+
+```{r}
+#| label: introduce list
+#| eval: true
+#| echo: true
+
+my_list <- list(name = "Alice", age = 25, scores = c(90, 85, 88))
+
+print(my_list)
+
+```
+
+## Why do we care about classes and types?
+
+Helpfull for plotting 
+
 ## Dataframe 
 
 ```{r}
@@ -382,3 +416,7 @@ library(utils)
 ## Types of data in R 
 
 tibble / dataframe / matrix / array 
+
+## Introduction to simple plots
+
+

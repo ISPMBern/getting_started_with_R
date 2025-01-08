@@ -67,6 +67,12 @@ c_vector = c(F, T, T, T, F, T, F, T)
 
 class(c_vector)
 
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+class(gender)
+
+
+
 ### Introduction to dataframes ###
 
 # Create a data frame
