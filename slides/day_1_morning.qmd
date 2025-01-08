@@ -1,7 +1,7 @@
 ---
 title: "Getting started with R"
 subtitle: "From the very basics"
-author: "Carina Nigg, Judith Bouman"
+author: "Dr. Carina Nigg & dr. Judith Bouman"
 format: ctupres-revealjs
 # footer: |
 #         CTU Bern theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html).
@@ -19,21 +19,21 @@ self-contained: true
 *Introduction of R and RStudio*
 
 -   Understanding R and RStudio
--   Basic functions
--   Write a first script
+-   Using basic functions
+-   Writing a first script
 -   Understanding packages
--   Import data
--   Basic functions on imported data
+-   Importing data
+-   Using basic functions on imported data
 :::
 
 ::: column
 *Analyzing your own data*
 
--   Organize your data
--   Load your data into R
--   Provide overview of your data
--   Inspect missing data
--   Check plausibility of your data
+-   Organizing your data
+-   Loading your data into R
+-   Providing an overview of your data
+-   Inspecting missing data
+-   Checking plausibility of your data
 :::
 :::
 
@@ -44,24 +44,26 @@ self-contained: true
 -   A lot of resources available
 -   Potentially useful in further career
 
+## Disclaimers
+
+-   First time we are teaching this course 
+-   We expect no prior knowledge 
+-   Ask questions 
+-   Tell us if we are too slow/fast
+
 ## Installing R and RStudio
 
-Means and variances of the distributions introduced so far:
-
-| Distribution | Mean  | Variance      |
-|--------------|-------|---------------|
-| Bernoulli    | $\pi$ | $\pi(1-\pi)$  |
-| Binomial     | $\pi$ | $n\pi(1-\pi)$ |
-| Normal       | $\mu$ | $\sigma^2$    |
+:::: {.middle}
+Did you all manage to install both R and RStudio?
+::::
 
 ## Difference R and RStudio
+
+![](figures/RStudio_to_R.png)
 
 ## Opening RStudio
 
 ![Rstudio windows](figures/RStudio_Screenshot_Labels.png)
-https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html
-
-Let`s try!
 
 ## Simple calculator
 
@@ -79,12 +81,31 @@ Let`s try!
 :::{}
 * Track code
 * Make changes
-* Repeat code (reproducability of science)
+* Repeat code (reproducible science)
 :::
 :::{}
 Now, you can download, save and open the "follow_along_script_monday_morning.R"
 :::
 
+## Code and comments 
+
+"#" can be use to add text and comments 
+ 
+```{r}
+#| label: simple calculator 2
+#| eval: true
+#| echo: true
+
+# Use "#" to add text and explanations to your code 
+
+```
+
+## Keyboard shortcuts
+
+- Run the current line or selection: Ctrl + Enter / Option + Enter
+- Run all code in the script: Ctrl + Alt + R / Command + shift + Enter
+- Interrupt running code: Esc
+- Comment/uncomment lines: Ctrl + Shift + C / Command + shift + C
 
 ## Saving "objects"
 
@@ -104,6 +125,54 @@ c <- a + b
 c
 
 ```
+
+Why could this be helpful? 
+
+## Example "objects"
+
+```{r}
+#| label: example object
+#| eval: true
+#| echo: true
+
+data = c(1,13,2,1,43,53,1,2,34,54,2,4,6,23)
+
+cutoff = 10 
+
+data[data>cutoff]
+
+```
+
+## Using "functions"
+
+![](figures/function_explanation.png)
+
+## Using "functions"
+
+```{r}
+#| label: using functions
+#| eval: true
+#| echo: true
+
+sum(1, 2)
+
+sum(a , b)
+
+?sum
+
+```
+
+## Getting help with functions
+
+```{r}
+#| label: using functions 2
+#| eval: true
+#| echo: true
+
+?sum
+
+```
+
 
 ## Vector
 
@@ -143,6 +212,7 @@ a_vector[4]
 matrix(data = c(1,2,3,4,5,6,7,8), nrow = 4 )
 
 ```
+
 ## Array/matrix
 
 How to access an element from a matrix
@@ -158,33 +228,7 @@ a_matrix[3,2] # first row, then column
 
 ```
 
-## Using "functions"
-
-```{r}
-#| label: using functions
-#| eval: true
-#| echo: true
-
-sum(1, 2)
-
-sum(a , b)
-
-?sum
-
-```
-
-## Getting help with functions
-
-```{r}
-#| label: using functions 2
-#| eval: true
-#| echo: true
-
-?sum
-
-```
-
-## Let`s try!
+## Let`s try! -- Exercise 1 
 
 Can you calculate the following for "a_vector"?
 
@@ -205,7 +249,7 @@ a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
 
 Take 15 minutes to try
 
-## Let`s try! - Solution
+## Let`s try! -- Exercise 1 - Solution
 
 ```{r}
 #| label: using functions 4
@@ -222,6 +266,30 @@ length(a_vector)
 
 ```
 
+
+## Let`s try! -- Exercise 2 
+
+Can you figure out what you can do with the following functions?
+
+* seq()
+* rep()
+
+Take 10 minutes 
+
+## Let`s try! -- Exercise 2 - Solution
+
+```{r}
+#| label: using functions 5
+#| eval: true
+#| echo: true
+
+seq(1,10)
+
+seq(1,10, by = 2)
+
+rep(0,100)
+
+```
 
 ## Classes and types
 
@@ -289,7 +357,7 @@ print(my_list)
 
 ## Why do we care about classes and types?
 
-Helpfull for plotting 
+Helpful for plotting --> we come back to this later
 
 ## Dataframe 
 
