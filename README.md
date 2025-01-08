@@ -18,4 +18,4 @@ Course participants will bring their own laptops with installed versions of [R](
 ### Choose a dataset for the graded exercise
 
 During the course you will peform an exercise using a dataset you can choose yourself, this exercise will be graded (for 0.5 ECT) and determines whether you pass the course (pass or fail grading). 
-You can bring a dataset that you (will) use for your own research or a dataset that is freely available online. The dataset needs to have at least four variables where at least one is numerical and one is categorical. 
+You can bring a dataset that you (will) use for your own research or a dataset that is freely available online. The dataset needs to have at least four variables where at least two are numerical and two are categorical. 

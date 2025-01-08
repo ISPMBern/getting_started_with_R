@@ -12,30 +12,15 @@ self-contained: true
 
 # Introduction
 
-## Disclaimer
-
-::: {}
-This is an introduction course and we expect no prior knowledge 
-:::
-::: {}
-Adjust your speed to your own level  
-:::
-::: {}
-Ask questions at any time
-:::
-::: {}
-Tell us if you are bored or overwhelmed
-:::
-
 ## Course content
 
 ::: columns
 ::: column
-*Introduction to R and RStudio*
+*Introduction of R and RStudio*
 
 -   Understanding R and RStudio
 -   Basic functions
--   Write a script
+-   Write a first script
 -   Understanding packages
 -   Import data
 -   Basic functions on imported data
@@ -52,51 +37,31 @@ Tell us if you are bored or overwhelmed
 :::
 :::
 
-## The program
-
-| Time | Topic | 
-|--------------|-------|
-| 27th 9.00 - 9.30    | R and RStudio, why? | 
-| 27th 9.00 - 9.30    |  | 
-| 27th 9.00 - 9.30    |  | 
-
-## Final exercise 
-
-*   Choose your own dataset 
-*   Organize your data folder  
-*   Read data into R environment using an r script  
-*   Select 4 variables (at least one numerical and one categorical) 
-*   Find out what classes your variables have and correct them to the most sensible class if necessary 
-*   Check for missing values for all variables 
-*   Give summary statistics 
-  +   For vector/categorical variables give table with count and percentages 
-  +   For numerical variables give a table with mean/median, sd, min, max 
-*   Visualize  
-  +   For numerical: histogram/boxplot 
-  +   For categorical: bar 
-  
-Grading: Pass or fail (0.5 ECT)
-
 ## Why learn R?
 
 -   Reproducibility of your results
--   Free software (unlike stata or SPSS)
+-   Free software 
 -   A lot of resources available
 -   Potentially useful in further career
 
 ## Installing R and RStudio
 
-Did you all manage to install R and RStudio?
+Means and variances of the distributions introduced so far:
+
+| Distribution | Mean  | Variance      |
+|--------------|-------|---------------|
+| Bernoulli    | $\pi$ | $\pi(1-\pi)$  |
+| Binomial     | $\pi$ | $n\pi(1-\pi)$ |
+| Normal       | $\mu$ | $\sigma^2$    |
 
 ## Difference R and RStudio
 
-![](figures/Rstudio_to_R.png)
-
 ## Opening RStudio
 
-![](figures/RStudio_Screenshot_Labels.png)
+![Rstudio windows](figures/RStudio_Screenshot_Labels.png)
+https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html
 
-# Basic concepts in R 
+Let`s try!
 
 ## Simple calculator
 
