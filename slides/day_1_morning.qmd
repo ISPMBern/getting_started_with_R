@@ -1,7 +1,7 @@
 ---
 title: "Getting started with R"
 subtitle: "From the very basics"
-author: "Carina Nigg, Judith Bouman"
+author: "Dr. Carina Nigg & dr. Judith Bouman"
 format: ctupres-revealjs
 # footer: |
 #         CTU Bern theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html).
@@ -34,21 +34,26 @@ Tell us if you are bored or overwhelmed
 *Introduction to R and RStudio*
 
 -   Understanding R and RStudio
+<<<<<<< HEAD
 -   Basic functions
 -   Write a script
+=======
+-   Using basic functions
+-   Writing a first script
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 -   Understanding packages
--   Import data
--   Basic functions on imported data
+-   Importing data
+-   Using basic functions on imported data
 :::
 
 ::: column
 *Analyzing your own data*
 
--   Organize your data
--   Load your data into R
--   Provide overview of your data
--   Inspect missing data
--   Check plausibility of your data
+-   Organizing your data
+-   Loading your data into R
+-   Providing an overview of your data
+-   Inspecting missing data
+-   Checking plausibility of your data
 :::
 :::
 
@@ -84,8 +89,16 @@ Grading: Pass or fail (0.5 ECT)
 -   A lot of resources available
 -   Potentially useful in further career
 
+## Disclaimers
+
+-   First time we are teaching this course 
+-   We expect no prior knowledge 
+-   Ask questions 
+-   Tell us if we are too slow/fast
+
 ## Installing R and RStudio
 
+<<<<<<< HEAD
 Did you all manage to install R and RStudio?
 
 ## Difference R and RStudio
@@ -97,6 +110,19 @@ Did you all manage to install R and RStudio?
 ![](figures/RStudio_Screenshot_Labels.png)
 
 # Basic concepts in R 
+=======
+:::: {.middle}
+Did you all manage to install both R and RStudio?
+::::
+
+## Difference R and RStudio
+
+![](figures/RStudio_to_R.png)
+
+## Opening RStudio
+
+![Rstudio windows](figures/RStudio_Screenshot_Labels.png)
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 
 ## Simple calculator
 
@@ -114,12 +140,38 @@ Did you all manage to install R and RStudio?
 :::{}
 * Track code
 * Make changes
+<<<<<<< HEAD
 * Repeat code (reproducability of science)
+=======
+* Repeat code (reproducible science)
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 :::
 :::{}
 Now, you can download, save and open the "follow_along_script_monday_morning.R"
 :::
 
+<<<<<<< HEAD
+=======
+## Code and comments 
+
+"#" can be use to add text and comments 
+ 
+```{r}
+#| label: simple calculator 2
+#| eval: true
+#| echo: true
+
+# Use "#" to add text and explanations to your code 
+
+```
+
+## Keyboard shortcuts
+
+- Run the current line or selection: Ctrl + Enter / Option + Enter
+- Run all code in the script: Ctrl + Alt + R / Command + shift + Enter
+- Interrupt running code: Esc
+- Comment/uncomment lines: Ctrl + Shift + C / Command + shift + C
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 
 ## Saving "objects"
 
@@ -140,6 +192,57 @@ c
 
 ```
 
+<<<<<<< HEAD
+=======
+Why could this be helpful? 
+
+## Example "objects"
+
+```{r}
+#| label: example object
+#| eval: true
+#| echo: true
+
+data = c(1,13,2,1,43,53,1,2,34,54,2,4,6,23)
+
+cutoff = 10 
+
+data[data>cutoff]
+
+```
+
+## Using "functions"
+
+![](figures/function_explanation.png)
+
+## Using "functions"
+
+```{r}
+#| label: using functions
+#| eval: true
+#| echo: true
+
+sum(1, 2)
+
+sum(a , b)
+
+?sum
+
+```
+
+## Getting help with functions
+
+```{r}
+#| label: using functions 2
+#| eval: true
+#| echo: true
+
+?sum
+
+```
+
+
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 ## Vector
 
 ```{r}
@@ -178,6 +281,10 @@ a_vector[4]
 matrix(data = c(1,2,3,4,5,6,7,8), nrow = 4 )
 
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 ## Array/matrix
 
 How to access an element from a matrix
@@ -193,6 +300,7 @@ a_matrix[3,2] # first row, then column
 
 ```
 
+<<<<<<< HEAD
 ## Using "functions"
 
 ```{r}
@@ -220,6 +328,9 @@ sum(a , b)
 ```
 
 ## Let`s try!
+=======
+## Let`s try! -- Exercise 1 
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 
 Can you calculate the following for "a_vector"?
 
@@ -240,7 +351,11 @@ a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
 
 Take 15 minutes to try
 
+<<<<<<< HEAD
 ## Let`s try! - Solution
+=======
+## Let`s try! -- Exercise 1 - Solution
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 
 ```{r}
 #| label: using functions 4
@@ -258,6 +373,33 @@ length(a_vector)
 ```
 
 
+<<<<<<< HEAD
+=======
+## Let`s try! -- Exercise 2 
+
+Can you figure out what you can do with the following functions?
+
+* seq()
+* rep()
+
+Take 10 minutes 
+
+## Let`s try! -- Exercise 2 - Solution
+
+```{r}
+#| label: using functions 5
+#| eval: true
+#| echo: true
+
+seq(1,10)
+
+seq(1,10, by = 2)
+
+rep(0,100)
+
+```
+
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 ## Classes and types
 
 Numeric and character
@@ -292,6 +434,43 @@ class(c_vector)
 
 ```
 
+<<<<<<< HEAD
+=======
+## Classes and types
+
+factor
+
+```{r}
+#| label: introduce vector 4
+#| eval: true
+#| echo: true
+
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+class(gender)
+
+```
+
+## Combining different types of vectors
+
+Lists
+
+```{r}
+#| label: introduce list
+#| eval: true
+#| echo: true
+
+my_list <- list(name = "Alice", age = 25, scores = c(90, 85, 88))
+
+print(my_list)
+
+```
+
+## Why do we care about classes and types?
+
+Helpful for plotting --> we come back to this later
+
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 ## Dataframe 
 
 ```{r}
@@ -382,3 +561,10 @@ library(utils)
 ## Types of data in R 
 
 tibble / dataframe / matrix / array 
+<<<<<<< HEAD
+=======
+
+## Introduction to simple plots
+
+
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0

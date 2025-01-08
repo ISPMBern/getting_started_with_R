@@ -37,7 +37,7 @@ sum(1, 2)
 
 ?sum()
 
-### Excercise 1: 
+### Exercise 1: 
 
 a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
 
@@ -55,6 +55,14 @@ a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
 
 # calculate the Length of the vector
 
+### Exercise 2: 
+
+#Can you figure out what you can do with the following functions?
+
+#seq()
+
+#rep() 
+
 ### Introduction to classes ###
 
 class(a_vector)
@@ -66,6 +74,10 @@ class(b_vector)
 c_vector = c(F, T, T, T, F, T, F, T)
 
 class(c_vector)
+
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+class(gender)
 
 ### Introduction to dataframes ###
 

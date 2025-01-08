@@ -12,6 +12,7 @@ self-contained: true
 
 # Basic programming tools
 
+<<<<<<< HEAD
 ## If-statements
 
 ## For-loop
@@ -19,4 +20,26 @@ self-contained: true
 ## While-loop 
 
 # More complex visualisations
+=======
+# If-else statement
+if (a > b) {
+  print("a is greater than b")
+} else {
+  print("b is greater than or equal to a")
+}
+
+# For loop
+for (i in 1:5) {
+  print(i)
+}
+
+# While loop
+x <- 1
+while (x <= 5) {
+  print(x)
+  x <- x + 1
+}
+
+# More complex visualisations --> ggplot? 
+>>>>>>> 25f258804843b2b46aaa7fc92a31b20d7a7a95b0
 
