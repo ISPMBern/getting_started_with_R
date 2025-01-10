@@ -1,7 +1,7 @@
 ---
 title: "Getting started with R - Code and exercises"
 author: "Dr. Carina Nigg & Dr. Judith Boumann"
-date: 7 January 2025
+date: 10 January 2025
 format:
   html:
    toc: true
@@ -24,7 +24,7 @@ The goal of this code and exercises is to...
 
 -   Gain hands-on experience through exercises
 
-To achieve those goals, you will work data from the National Health and Nutrition Examination Survey (NHANES), a national survey that measures every few years health and nutrition of adults and children in the US, including survey data, health exams, and laboratory tests (<https://wwwn.cdc.gov/nchs/nhanes/>). Before we get started with importing the data, we have to prepare our environment.
+To achieve those goals, you will shortly work with data from Basel on Covid vaccinations to check data structure and check missings. For data wrangling and exploration, you will work with data from the National Health and Nutrition Examination Survey (NHANES), a national survey that measures every few years health and nutrition of adults and children in the US, including survey data, health exams, and laboratory tests (<https://wwwn.cdc.gov/nchs/nhanes/>). Before we get started with importing the data, we have to prepare our environment.
 
 # Set-up R environment
 
@@ -52,15 +52,9 @@ To get started on this
 
 1.  Select a folder on your computer where you will set up the mentioned folder structure.
 
-2.  Open R. Go to the Tab File -\> New File -\> R Script
+2.  Copy the code below into your R script.
 
-3.  Copy the code below into your R script.
-
-4.  Replace the path in the code below with the path where you want to set up the folder structure. Run the code. Check in your folder if the structure was created. Check if your project root directory is set to the path you want it to be:
-
-```{r}
-getwd()
-```
+3.  Replace the path in the code below with the path where you want to set up the folder structure. Run the code. Check in your folder if the structure was created. Check if your project root directory is set to the path you want it to be.
 
 ```{r set directories and project folders}
 
@@ -94,7 +88,11 @@ for (dir in dirs) {
 
 ```
 
-5.  Save the script with a title of your choice in the folder "03_script". Click on File -\> Save as... -\> navigate to 03_script.
+```{r}
+getwd()
+```
+
+4.  Save the script with a title of your choice in the folder "03_script". Click on File -\> Save as... -\> navigate to 03_script.
 
 ## Install and load packages
 
@@ -117,14 +115,14 @@ Due to the large number of R packages out there, it can happen that functions ha
 unloadNamespace("tidyverse")
 ```
 
-### Exercise 1: Install & load package
+### Exercise 3: Install & load package
 
 Install the package "pacman".
 
 ```{r Exercise 1}
 #| eval: false
 #| code-fold: true
-#| code-summary: "Show code exercise 1"
+#| code-summary: "Show code exercise 3"
 #| output: false
 
 # Install package
@@ -165,13 +163,13 @@ If you don't know what a package is for, there are several ways to find out:
     help(package = "packageName")
     ```
 
-### Exercise 2: Find package information
+### Exercise 4: Find package information
 
 Find out what the package "readxl" is used for. List two functions of the package
 
 ```{r Exercise 2}
 #| code-fold: true
-#| code-summary: "Show code exercise 2"
+#| code-summary: "Show code exercise 4"
 #| output: false
 
 # Description of readxl
@@ -284,7 +282,7 @@ There are other packages and functions for importing other data formats. Most co
 
 -   **STATA, SAS, SPSS** (haven): read_dta (Stata files), read_sav() (SPSS files), read_sas (SAS files)
 
-### Exercise 3: Import data
+### Exercise 5: Import data
 
 1.  Download the data "BMX_J.xpt" from GitHub and put it into your "01_oridata" folder. This is the original data file from the NHANES dataset that contains all body measures (e.g., height, weight).
 
@@ -294,7 +292,7 @@ There are other packages and functions for importing other data formats. Most co
 
     ```{r exercise 3}
     #| code-fold: true
-    #| code-summary: "Show code exercise 3"
+    #| code-summary: "Show code exercise 5"
     #| output: false
 
     nhanes_body <- read_xpt(file.path(d_oridata, "BMX_J.xpt"))
@@ -308,126 +306,125 @@ After you imported your data, you may want to check your data structure and get 
 -   **Dimensions**: Check number of rows and columns
 
     ```{r}
-    #| eval: FALSE
 
     # Dimensions (rows and columns)
-    dim(yourdata)
+    dim(nhanes)
 
     # Number of rows only
-    nrow(yourdata)
+    nrow(nhanes)
 
     # Number of columns only
-    ncol(yourdata)
+    ncol(nhanes)
     ```
 
 -   **Column names**: List the names of all variables
 
     ```{r}
-    #| eval: FALSE
 
-    colnames(yourdata)
+    colnames(nhanes)
     ```
 
 -   **Data structure**: Provides overview of dataset structure, including variable types and the first few observations
 
     ```{r}
-    #| eval: FALSE
 
     # option 1
-    str(yourdata)
+    str(nhanes)
 
     # option 2
-    glimpse(yourdata)
+    glimpse(nhanes)
 
     # option 3: This will open the dataset in a separate window with the first couple of hundered of rows and
-    view(yourdata)
+    View(nhanes)
     ```
 
 -   **Quick summary of each variable**: Gives you summary statistics for each column, including missings
 
     ```{r}
-    #| eval: FALSE
 
-    summary(yourdata)
+    summary(nhanes)
     ```
 
 -   **Data preview**: View the first view or last few rows of your dataset
 
     ```{r}
-    #| eval: FALSE
 
     # first 6 rows
-    head(yourdata)
+    head(nhanes)
 
     # last 6 rows
-    tail(yourdata)
+    tail(nhanes)
 
     # You can append this argument to specify the first/last number of rows you want to see:
-    head(yourdata, n = 10)
+    head(nhanes, n = 10)
     ```
 
 -   **Check class / variable type** of your dataset / columns
 
     ```{r}
-    #| eval: FALSE
 
     # Class of the entire dataset
-    class(yourdata)
+    class(nhanes)
 
     # Class of a specific column
-    class(yourdata$variable)
+    class(nhanes$RIAGENDR)
 
     # Data types of all columns
-    sapply(yourdata, class)
+    sapply(nhanes, class)
 
     ```
 
-### Exercise 4: Checking data structure of NHANES
+### Exercise 6: Checking data structure of a dataset
 
-Check the data structure of NHANES. Find out about the following:
+Download the data Covid19_vaccines_Basel. This dataset has been altereda and contains some information about the number of Covid-19 vaccinations in the Canton Basel-Citiy between 2 January 2021 and July 1 2023. Find out about the following:
 
-1.  How many columns does the dataset have?
+1.  Import the excel file Covid_19_vaccines_Basel.xlsx into R and assign it to the object "covid".
 
-2.  How many rows?
+2.  How many columns does the dataset have?
 
-3.  Use one of the functions to get an overview of your data
+3.  How many rows?
 
-4.  What is the median age in your dataset? (variable "RIDAGEYR)
+4.  Use one of the functions to get an overview of your data.
 
-5.  How many missings has body weight? (variable "BMXWT")
+5.  What is the median of vaccinations per day? (variable `Vac_perday`)
 
-6.  What is the ID of participant in line 14? (variable "SEQN")
+6.  How many missings do we have for booster vaccinations? (variable `Total_vacbooster`)
+
+7.  What is the total number of vaccinations in line 14? (variable `Total_vac`)
 
 ```{r exercise 4}
 #| code-fold: true
-#| code-summary: "Show code exercise 4"
+#| code-summary: "Show code exercise 6"
 #| output: false
 
-# 1. How many columns does the dataset have?
-# 15 columns
-dim(nhanes)
-ncol(nhanes)
+# 1. Import the excel file Covid_19_vaccines_Basel into R
+covid <- read_excel(file.path(d_oridata, "Covid19_vaccines_Basel.xlsx"))
 
-# 2. How many rows?
-# 9254 rows
-dim(nhanes)
-nrow(nhanes)
+# 2. How many columns does the dataset have?
+# 6 columns
+dim(covid)
+ncol(covid)
 
-# 3. Use one of the functions to get an overview of your data
-str(nhanes) # option 1
-glimpse(nhanes) # option 2
+# 3. How many rows?
+# 915 rows
+dim(covid)
+nrow(covid)
 
-# 4. What is the median age in your dataset? (variable "RIDAGEYR)
-# 31 years
-summary(nhanes)
+# 4. Use one of the functions to get an overview of your data
+str(covid) # option 1
+glimpse(covid) # option 2
 
-# 5. How many missings has body weight? (variable "BMXWT")
-# 684
-summary(nhanes)
+# 5. What is the median of vaccinations per day? (variable Vac_perday)
+# 72 years
+summary(covid)
 
-# 6. What is the ID of participant in line 14? (variable "SEQN")
-# 93716
-head(nhanes, n = 14)
+# 6. How many missings do we have for booster vaccinations? (variable Total_vacbooster)
+# 58
+summary(covid)
+
+# 7. What is the total number of vaccinations in line 14? (variable Total_vac)
+# 15,806
+head(covid, n = 14)
 ```
 
 ## Check missings
@@ -437,38 +434,36 @@ Checking for missings is an essential step when importing your data. We have a s
 **Check for missing values**: Summarize missing values in the dataset
 
 ```{r}
-#| eval: FALSE
 
 # Total missing values
-sum(is.na(yourdata))
+sum(is.na(nhanes))
 
 # Missing values per column
-colSums(is.na(yourdata))
+colSums(is.na(nhanes))
 
 # Missing values for a specific variable
-sum(is.na(yourdata$variable))
+sum(is.na(nhanes$BMXWT))
 
 ```
 
-### Exercise 5: Check missing in NHANES
+### Exercise 7: Check missing
 
-Check the number of missings for all variables in the NHANES dataset.
+Check the number of missings for all variables in the covid dataset.
 
-1.  What is the variable with the highest number of missings?
-2.  Check missings only for the variable body weight (BMXWT).
+1.  Check the number of missings for all variables in the covid dataset.
+2.  Check missings only for total vaccine boosters (variable `Total_vacbooster`).
 
 ```{r Exercise 5}
 #| code-fold: true
-#| code-summary: "Show code exercise 5"
+#| code-summary: "Show code exercise 7"
 #| output: false
 
-# 1. What is the variable with the highest number of missings?
-# SMQ040 (Current smoking)
-colSums(is.na(nhanes))
+# 1. Check the number of missings for the whole covid dataset.
+colSums(is.na(covid))
 
-# 2. Check missings only for the variable body weight (BMXWT)
+# 2. Check missings only for total vaccine boosters (variable Total_vacbooster).
 # 684
-sum(is.na(nhanes$BMXWT))
+sum(is.na(covid$Total_vacbooster))
 
 ```
 
@@ -492,7 +487,7 @@ The tidyverse is a collection of R packages designed to make data manipulation, 
 
 -   **forcats**: For handling categorical data (factors).
 
-**Why Use the tidyverse?**
+**Why use the tidyverse?**
 
 -   **Consistent Syntax:** Tidyverse functions follow a consistent pattern, making them easier to understand and use.
 
@@ -529,9 +524,9 @@ In the tidyverse example above, the following happens:
 -   **nhanes %\>%**\
     Start with the `nhanes` dataset.
 -   **filter(RIAGENDR == 1) %\>%**\
-    Filter the dataset where RIAGENDR == 1 is `(male)`, and then pass this filtered dataset to the next function.
+    Filter the dataset where RIAGENDR == 1 is (male), and then pass this filtered dataset to the next function.
 -   **summarize(mean_weight = mean(BMXWT, na.rm = TRUE))**\
-    Calculate the mean of the `Weight` column and store it as `mean_weight`. na.rm = TRUE tells R to ignore/remove missing values for this operation.
+    Calculate the mean of the `BMXWT` column and store it as `mean_weight`. `na.rm = TRUE` tells R to ignore/remove missing values for this operation.
 
 **More generalized, the pipe (%\>%)...**
 
@@ -549,8 +544,6 @@ In this session, we will cover the most commonly used functions in the tidyverse
 
 -   **filter:** For filtering rows based upon condition(s).
 
--   **distinct**: For finding duplicates
-
 -   **arrange:** For sorting data
 
 -   **rename**: For renaming variables
@@ -565,7 +558,7 @@ In this session, we will cover the most commonly used functions in the tidyverse
 
 -   **relocate**: For re-ordering variables in a dataframe
 
--   **fct_relevel**: For re-ordering levels
+-   **relevel**: For setting a reference category.
 
 ## Select()
 
@@ -625,15 +618,15 @@ head(df)
     ```{r}
 
     # Select columns by position
-    dt <- nhanes %>%
+    dn <- nhanes %>%
       select(1:3) %>%
       head %>%
       print
 
     # Select consecutive columns using names - same result as above
-    dt <- nhanes %>%
+    dn <- nhanes %>%
           select(SEQN:RIDAGEYR)
-
+    head(dn)
     ```
 
 -   **Exclude columns** using the "-" operator
@@ -641,10 +634,10 @@ head(df)
     ```{r}
 
     # Exclude specific columns
-    dt <- nhanes %>%
+    dn <- nhanes %>%
       select(-SEQN:-INDHHIN2)
 
-    head(dt)
+    head(dn)
     ```
 
 -   **Select columns by pattern:** You can select columns by pattern or name
@@ -652,25 +645,22 @@ head(df)
     ```{r}
 
     # Select columns that start with "BMX"
-    dt <- nhanes %>%
+    dn <- nhanes %>%
       select(starts_with("BMX"))
-
-    head(dt)
+    head(dn)
 
     # Select columns that contain "AGE"
-    dt <- nhanes %>%
+    dn <- nhanes %>%
       select(contains("AGE"))
-
-    head(dt)
+    head(dn)
 
     # Select columns that end with "YR"
-    dt <- dt %>%
+    dn <- nhanes %>%
       select(ends_with("YR"))
-
-    head(dt)
+    head(dn)
     ```
 
-### Exercise 6: Select
+### Exercise 8: Select
 
 When writing the code for the following exercises, assign them to the object "ds".
 
@@ -690,7 +680,7 @@ When writing the code for the following exercises, assign them to the object "ds
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 6"
+#| code-summary: "Show code exercise 8"
 #| output: false
 
 # 1. Select only the columns SEQN, RIAGENDR, and SMQ040.
@@ -732,11 +722,10 @@ The `filter()` function (from dplyr) is used to select rows in a dataset that me
 ```{r}
 
 # Filter for males only (RIAGENDR == 1)
-dt <- df %>%
+dn <- df %>%
   filter(RIAGENDR == 1)
 
-# View the filtered dataset
-head(dt)
+head(dn)
 
 ```
 
@@ -744,10 +733,10 @@ If you work with variables of the class "factor", you need to put the value (lab
 
 ```{r}
 
-dt <- df %>%
+dn <- df %>%
       mutate(RIAGENDR = as.factor(RIAGENDR)) %>% # mutate to factor variable
       filter(RIAGENDR == "1")
-head(dt)
+head(dn)
 ```
 
 **Options**: There are of course more options how you can work with the filter-function.
@@ -757,13 +746,13 @@ head(dt)
     ```{r}
 
     # Filter for females aged 30 or older
-    dt <- df %>%
+    dn <- df %>%
       filter(RIAGENDR == 2 & RIDAGEYR >= 30) %>%
       summary %>%
       print
 
     # Filter for individuals younger than 18 OR with weight above 80 kg
-    dt <- df %>%
+    dn <- df %>%
       filter(RIDAGEYR > 18 | BMXWT > 80)
 
     ```
@@ -773,51 +762,52 @@ head(dt)
     ```{r}
 
     # Filter rows where weight is not missing
-    dt <- df %>%
+    dn <- df %>%
       filter(!is.na(BMXWT)) %>%
       summary %>%
       print
 
     # Filter rows where height is missing
-    dt <- df %>%
+    dn <- df %>%
       filter(is.na(BMXHT)) %>%
       summary %>%
       print
     ```
 
-### Exercise 7: Filter
+### Exercise 9: Filter
 
-Before filtering, select the following variables: SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1. Assign them to the object "ds".
+1.  Select the following variables: SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1. Assign them to the object "ds".
 
-For the following exercises, use the dataset "ds" and assign any operations to the object "dn".
+    For the following exercises, use the dataset "ds" and assign any operations to the object "dt".
 
-1.  Filter rows where `RIAGENDR` is 2 (female).
-2.  Filter rows where `BPXSY1` (systolic blood pressure) is greater than 120 and `BPXDI1` (diastolic blood pressure) is less than 80.
-3.  Combine multiple conditions with `|`: Filter rows where `RIAGENDR` is 1 (male) OR `BPXSY1` is greater than 140.
+2.  Filter rows where `RIAGENDR` is 2 (female).
+
+3.  Filter rows where `BPXSY1` (systolic blood pressure) is greater than 120 and `BPXDI1` (diastolic blood pressure) is less than 80.
+
+4.  Combine multiple conditions with `|`: Filter rows where `RIAGENDR` is 1 (male) OR `BPXSY1` is greater than 140.
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 7"
+#| code-summary: "Show code exercise 9"
 #| output: false
 
 
-# Pre-task: Select the variables SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1
+# 1. Select the variables SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1
 ds <- nhanes %>%
             select(SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1)
 
-
-# 1. Filter rows for people who smoke everday (SMQ040 is 1).
-dn <- ds %>%
+# 2. Filter rows for people who smoke everday (SMQ040 is 1).
+dt <- ds %>%
   filter(SMQ040 == 1)
 
-# 2. Filter rows where BPXSY1 (systolic blood pressure) is greater than 120
+# 3. Filter rows where BPXSY1 (systolic blood pressure) is greater than 120
 #    and BPXDI1 (diastolic blood pressure) is less than 80.
-dn <- ds %>%
+dt <- ds %>%
   filter(BPXSY1 > 140 & BPXDI1 > 90)
 
-# 3. Combine multiple conditions with |:
+# 4. Combine multiple conditions with |:
 #    Filter rows where RIAGENDR is 1 (male) OR BPXSY1 is greater than 140.
-dn <- ds %>%
+dt <- ds %>%
   filter(RIAGENDR == 1 | BPXSY1 > 140)
 
 ```
@@ -837,7 +827,7 @@ The `arrange()` function (dplyr package) is used to reorder rows in a dataset ba
 ```{r}
 
 # Sort by age (ascending order)
-dt <- df %>%
+dn <- df %>%
   arrange(RIDAGEYR) %>%
   head %>%
   print
@@ -850,10 +840,10 @@ dt <- df %>%
     ```{r}
 
     # Sort by weight (descending order)
-    dt <- df %>%
+    dn <- df %>%
       arrange(desc(BMXWT))
 
-    head(dt)
+    head(dn)
     ```
 
 -   **Sorting by multiple variables**: You can sort by multiple columns, specifying the order of precedence
@@ -861,24 +851,24 @@ dt <- df %>%
     ```{r}
 
     # Sort by gender (ascending) and age (descending)
-    dt <- df %>%
+    dn <- df %>%
       arrange(RIAGENDR, desc(RIDAGEYR))
 
-    head(dt)
+    head(dn)
     ```
 
--   **Sorting with missing values**: By default, arrange() places missing values (NA) at the end. You can handle missing values explicitly if needed
+-   **Sorting with missing values**: By default, arrange() places missing values (NA) at the end. You can also have them on top if needed.
 
     ```{r}
 
     # Sort by height with NA at the top
-    dt <- df %>%
+    dn <- df %>%
       arrange(desc(is.na(BMXHT)))
 
-    head(dt)
+    head(dn)
     ```
 
-### Exercise 8: Arrange
+### Exercise 10: Arrange
 
 Use again your dataset "ds" and assign any operations to "dt".
 
@@ -888,20 +878,20 @@ Use again your dataset "ds" and assign any operations to "dt".
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 8"
+#| code-summary: "Show code exercise 10"
 #| output: false
 
 # 1. Sort the dataset by BPXSY1 (systolic blood pressure) in ascending order.
-dn <- ds %>%
+dt <- ds %>%
   arrange(BPXSY1)
 
 # 2. Sort the dataset by SMQ040 (smoking status) in descending order.
-dn <- ds %>%
+dt <- ds %>%
   arrange(desc(SMQ040))
 
 # 3. Filter rows where BPXDI1 (diastolic blood pressure) is greater than 90 and
 #    sort descending by BPXSY1.
-dn <- ds %>%
+dt <- ds %>%
   filter(BPXDI1 > 90) %>%
   arrange(desc(BPXSY1))
 
@@ -912,11 +902,7 @@ dn <- ds %>%
 The `rename()` function (from dplyr) is used to rename variables in a dataset. It allows you to provide new, meaningful names to columns while preserving the dataset's structure. You can use it to
 
 -   To improve the readability and interpretability of your dataset.
-
-<!-- -->
-
 -   To standardize variable names for consistency in analysis.
-
 -   To simplify long or complex variable names.
 
 We will show some examples here. To stay consistent with the codebook, we will keep working with the original variable names afterwards.
@@ -964,6 +950,12 @@ colnames(dn)
     di <- df %>%
       rename_with(~ paste0("NHANES_", .))
 
+    # Breakdown of the rename_with code
+    # ~ (tilde): In general, the tilde creates an anonymous function for rename_with to apply paste0 to each column name. In simple words, it tells R in this case "For each column name, do the following"
+    # paste0: This tells R to join strings without spaces
+    # ("NHANES_",): Add "NHANES_" to the beginning of each column name.
+    # . : Represents each column name (a placeholder for the current column name being processed).
+
     # View the result
     colnames(di)
 
@@ -980,6 +972,15 @@ colnames(dn)
     # Option 3: Replace "BMX" with "body" in variable names
     di <- df %>%
       rename_with(~ sub("^BMX", "body", .), starts_with("BMX"))
+
+    # Breakdown of the rename_with code
+    # ~ sub: In general, this tells R to find pattern in a certain string and it with something you specify. The string pattern and replacement you specify in the following brackets.
+    # ^: Indicates to look only for the start of the string.
+    # "BMX": Matches the prefix BMX at the start of the column name
+    # "body": This is the replacement you specify for body
+    # . : Represents each column being processed
+    # ("NHANES_",): Add "NHANES_" to the beginning of each column name.
+    # . : Represents each column name (a placeholder for the current column name being processed).
 
     # View the updated column names
     colnames(di)
@@ -1009,7 +1010,7 @@ colnames(dn)
 
     ```
 
-### Exercise 9: Rename
+### Exercise 11: Rename
 
 Practice renaming variables using the ds-dataframe. Assign all operations to "dt".
 
@@ -1019,7 +1020,7 @@ Practice renaming variables using the ds-dataframe. Assign all operations to "dt
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 9"
+#| code-summary: "Show code exercise 11"
 #| output: false
 
 
@@ -1051,20 +1052,19 @@ The `mutate()` function in the `dplyr` package is used to create new variables, 
 
 ### Examples
 
--   **Creating new variables**: Add a new variable. In this example, add the variable BMI (Body Mass Index: body weight in kg / (body height in m) \^2
+-   **Creating new variables**: Add a new variable. In this example, add the variable BMI (Body Mass Index: body weight in kg / (body height in m) \^2)
 
     ```{r}
-
 
     # Calculate BMI
     dn <- df %>%
       mutate(BMI = BMXWT / (BMXHT / 100)^2)
 
     # List column names
-    colnames(dn)
+    head(dn)
     ```
 
--   **Modifying existing variables**: In this example, change age (currently in years) to months. In this example, we overwrite the current age-variable. It is recommended to create a new variable
+-   **Modifying existing variables**: In this example, we change age (currently in years) to months. Here, we overwrite the current age-variable. It is recommended to create a new variable
 
     ```{r}
 
@@ -1101,7 +1101,7 @@ The `mutate()` function in the `dplyr` package is used to create new variables, 
 
     ```
 
--   **Categorizing variables using case_when:** For categorizing variables, more flexibel for multiple conditions (\> 2).
+-   **Categorizing variables using case_when:** For categorizing variables, case_when is more flexibel for multiple conditions (\> 2).
 
     ```{r}
 
@@ -1118,7 +1118,7 @@ The `mutate()` function in the `dplyr` package is used to create new variables, 
     head(df, n = 20)
     ```
 
-### Exercise 10: Mutate
+### Exercise 12: Mutate
 
 Use again your dataset "ds" and assign all operations to this dataset (ds).
 
@@ -1130,15 +1130,15 @@ Use again your dataset "ds" and assign all operations to this dataset (ds).
 
 3.  Categorize `BPXSY1` (systolic blood pressure) into three groups using `case_when()`.
 
-    -   `< 120`: "Normal".
+    -   `< 120`: "normal"
 
-    -   `120–139`: "Elevated".
+    -   `120–139`: "elevated"
 
-    -   `≥ 140`: "Hypertension".
+    -   `≥ 140`: "hypertension"
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 10"
+#| code-summary: "Show code exercise 12"
 #| output: false
 
 # 1. Create Pulse_Pressure variable
@@ -1221,8 +1221,7 @@ There are different conversions available:
     # Check the result
     class(df$RIAGENDR)
     levels(df$RIAGENDR)
-
-
+    nlevels(df$RIAGENDR) # Gives you the number of levels
     ```
 
 -   **Factor to numeric**: When you import datasets, it can happen that a numeric variable is recognized as a factor variable, which you then have to change:
@@ -1239,7 +1238,7 @@ There are different conversions available:
 
     ```
 
-### Exercise 11: Class conversions
+### Exercise 13: Class conversions
 
 Work again with your dataframe "ds" and assign all operations to the dataframe "ds".
 
@@ -1253,7 +1252,7 @@ Work again with your dataframe "ds" and assign all operations to the dataframe "
 
     ```{r}
     #| code-fold: true
-    #| code-summary: "Show code exercise 11"
+    #| code-summary: "Show code exercise 13"
     #| output: false
 
     # 1. Convert SMQ040 (smoking status) from numeric to a factor with the following labels:
@@ -1278,15 +1277,9 @@ Now that you prepared your dataset for analysis, we can run exploratory data ana
 
 -   **Visualizations**: Exploring distributions and relationships between variables (e.g., boxplot, correlation matrix)
 
--   **Group Comparisons**: Comparing metrics across different categories (e.g., cross-tabulations, mean by group).
+-   **Group comparisons**: Comparing metrics across different categories (e.g., cross-tabulations, mean by group).
 
-We will use different packages for exploratory data analysis:
-
--   tidyverse
-
--   table1
-
--   summarytools
+We will use different packages for exploratory data analysis including tidyverse, which you already know, and the packages "table1" and "summarytools".
 
 ## Simple descriptive statistics
 
@@ -1377,8 +1370,7 @@ We will calculate some basic descriptive statistics for numeric and factor varia
     # Add proportions
     df %>%
       count(RIAGENDR) %>%
-      # calculates the proportion of each category relative to the total count of observations
-      mutate(Proportion = n / sum(n))
+      mutate(Proportion = n / sum(n)) #  # calculates the proportion of each category relative to the total count of observations
 
     ```
 
@@ -1419,7 +1411,7 @@ If you want to create a more comprehensive overview of both numeric and factor v
 
     ```
 
-### Exercise 12: Simple descriptive statistics
+### Exercise 14: Simple descriptive statistics
 
 Use your dataframe ds for the following exercises.
 
@@ -1428,7 +1420,7 @@ Use your dataframe ds for the following exercises.
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 12"
+#| code-summary: "Show code exercise 14"
 #| output: false
 
 # 1. Calculate basic descriptive statistics (minimum, mean, median, and maximum) for the following numeric variables: BPXSY1 (systolic blood pressure), BPXDI1 (diastolic blood pressure).
@@ -1537,16 +1529,11 @@ dfSummary(ds)
 While descriptive statistics are helpful, any exploratory data analysis requires visual inspection to
 
 -   explore variable distributions
-
-<!-- -->
-
 -   assess the spread of data and outliers
-
 -   examine relationships between two numeric variables
-
 -   visualize categorical data
 
-Note on visualizations: For better customization and aesthetics, **ggplot2** can all charts we show below and much more with enhanced visual appeal, combining different data types and layers. However, if you want to just have a quick visualization of your data, Base R is often quicker and faster. Due to the complexity of ggplot2, we won't go there today, but we strongly recommend to check it out if you want to create figures for publications.
+**Note on visualizations**: For better customization and aesthetics, **ggplot2** can all charts we show below and much more with enhanced visual appeal, combining different data types and layers. However, if you want to just have a quick visualization of your data, Base R is often quicker and faster. Due to the complexity of ggplot2, we won't go there today, but we strongly recommend to check it out if you want to create figures for publications.
 
 ### Histograms
 
@@ -1583,7 +1570,7 @@ boxplot(
   main = "BMI by Gender",
   xlab = "Age group",
   ylab = "BMI",
-  col = c("lightblue", "lightgreen")
+  col = c("lightblue", "lightgreen", "lightyellow")
 )
 
 
@@ -1601,11 +1588,11 @@ plot(df$BMXHT, df$BMXWT)
 # Scatterplot with some specifications
 plot(
   df$BMXHT, df$BMXWT,
-  main = "Scatterplot of Height vs. Weight",
+  main = "Scatterplot Height vs. Weight",
   xlab = "Height (cm)",
   ylab = "Weight (kg)",
   col = "darkgreen",
-  pch = 10
+  pch = 19 # with this number you can specify the shape of the points
 )
 
 ```
@@ -1630,7 +1617,7 @@ barplot(table(df$BMI_category),
 
 ```
 
-### Exercise 13: Visualizations
+### Exercise 15: Visualizations
 
 1.  Create a histogram for `BPXSY1` (systolic blood pressure).
 2.  Create a boxplot for `BPXSY1` (diastolic blood pressure) and stratify by `smoker_status`. Title the figure "Blood pressure and smoker status". Label the x-axis "Smoking status", the y-axis "Systolic blood pressure". Color the boxplots in blue and yellow.
@@ -1639,7 +1626,7 @@ barplot(table(df$BMI_category),
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 13"
+#| code-summary: "Show code exercise 15"
 #| output: false
 
 # 1. Create a histogram for BPXSY1 (systolic blood pressure).
@@ -1710,7 +1697,7 @@ tidyverse and table1 are two helpful packages for calculating descriptives for e
 
     ```
 
-### Exercise 14: Descriptives by group
+### Exercise 16: Descriptives by group
 
 1.  Use tidyverse to
     -   filter for participants without missings for `BPXSY1`
@@ -1722,7 +1709,7 @@ tidyverse and table1 are two helpful packages for calculating descriptives for e
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 14"
+#| code-summary: "Show code exercise 16"
 #| output: false
 
 # 1. Use tidyverse to filter for participants without missings for BPXSY1, group the dataset by bp_category calculate the mean and median for BPXSY1 (systolic blood pressure)
@@ -1788,13 +1775,13 @@ To assess associations between categorical variables, you need contigency tables
 
     ```
 
-### Exercise 15: Cross-tabulations
+### Exercise 17: Cross-tabulations
 
 Using your dataset ds, create a contigency table of `bp_category` and `smoker_status`. Calculate column-percentages, and run a chi-square test (remember to drop missings for the chi-square test).
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Show code exercise 15"
+#| code-summary: "Show code exercise 17"
 #| output: false
 
 # Cross-tabulation with ctable of bp_category and smoker_status
