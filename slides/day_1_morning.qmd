@@ -12,11 +12,26 @@ self-contained: true
 
 # Introduction
 
+## Disclaimer
+
+::: {}
+This is an introduction course and we expect no prior knowledge 
+:::
+::: {}
+Adjust your speed to your own level  
+:::
+::: {}
+Ask questions at any time
+:::
+::: {}
+Tell us if you are bored or overwhelmed
+:::
+
 ## Course content
 
 ::: columns
 ::: column
-*Introduction of R and RStudio*
+*Introduction to R and RStudio*
 
 -   Understanding R and RStudio
 -   Using basic functions
@@ -37,10 +52,35 @@ self-contained: true
 :::
 :::
 
+## The program
+
+| Time | Topic | 
+|--------------|-------|
+| 27th 9.00 - 9.30    | R and RStudio, why? | 
+| 27th 9.00 - 9.30    |  | 
+| 27th 9.00 - 9.30    |  | 
+
+## Final exercise 
+
+*   Choose your own dataset 
+*   Organize your data folder  
+*   Read data into R environment using an r script  
+*   Select 4 variables (at least one numerical and one categorical) 
+*   Find out what classes your variables have and correct them to the most sensible class if necessary 
+*   Check for missing values for all variables 
+*   Give summary statistics 
+  +   For vector/categorical variables give table with count and percentages 
+  +   For numerical variables give a table with mean/median, sd, min, max 
+*   Visualize  
+  +   For numerical: histogram/boxplot 
+  +   For categorical: bar 
+  
+Grading: Pass or fail (0.5 ECT)
+
 ## Why learn R?
 
 -   Reproducibility of your results
--   Free software 
+-   Free software (unlike stata or SPSS)
 -   A lot of resources available
 -   Potentially useful in further career
 
@@ -52,6 +92,18 @@ self-contained: true
 -   Tell us if we are too slow/fast
 
 ## Installing R and RStudio
+
+Did you all manage to install R and RStudio?
+
+## Difference R and RStudio
+
+![](figures/Rstudio_to_R.png)
+
+## Opening RStudio
+
+![](figures/RStudio_Screenshot_Labels.png)
+
+# Basic concepts in R 
 
 :::: {.middle}
 Did you all manage to install both R and RStudio?
@@ -228,7 +280,34 @@ a_matrix[3,2] # first row, then column
 
 ```
 
+## Using "functions"
+
+```{r}
+#| label: using functions
+#| eval: true
+#| echo: true
+
+sum(1, 2)
+
+sum(a , b)
+
+?sum
+
+```
+
+## Getting help with functions
+
+```{r}
+#| label: using functions 2
+#| eval: true
+#| echo: true
+
+?sum
+
+```
+
 ## Let`s try! -- Exercise 1 
+
 
 Can you calculate the following for "a_vector"?
 
@@ -249,7 +328,9 @@ a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
 
 Take 15 minutes to try
 
+
 ## Let`s try! -- Exercise 1 - Solution
+
 
 ```{r}
 #| label: using functions 4
@@ -324,6 +405,7 @@ c_vector = c(F, T, T,T, F, T, F, T)
 class(c_vector)
 
 ```
+
 
 ## Classes and types
 
@@ -489,10 +571,6 @@ run "library()" every time you want to use any function from this package
 
 Let's try!
 
-
-
-
-
 # Get your data in R
 
 ## Organize your data
@@ -535,7 +613,4 @@ library(utils)
 ## Types of data in R 
 
 tibble / dataframe / matrix / array 
-
-
-
 
