@@ -357,9 +357,19 @@ print(my_list)
 
 ## Why do we care about classes and types?
 
-Helpful for plotting --> we come back to this later
+- Helpful for plotting --> we come back to this later
+- In functions the class/type of the several input variables are often pre-defined
 
-## Dataframe 
+```{r}
+#| label: wrong class
+#| eval: true
+#| echo: true
+
+#sum(c("Kees", "Klaas", "Jan"))
+
+```
+
+## Data frame 
 
 ```{r}
 #| label: dataframe
@@ -371,6 +381,9 @@ df <- data.frame(x = 1:3, y = c("a", "b", "c"))
 
 # Printing
 print(df)
+
+# use one of the inbuilt data frames
+cars
 
 ```
 
@@ -389,6 +402,75 @@ print(tb)
 
 ```
 
+## Introduction to simple plots
+
+
+```{r}
+#| label: simple plotting 1 
+#| eval: true
+#| echo: true
+
+plot(cars$speed, cars$dist)
+
+```
+
+## Introduction to simple plots
+
+
+```{r}
+#| label: simple plotting 2 
+#| eval: true
+#| echo: true
+
+hist(cars$speed)
+
+```
+
+## Let`s try! -- Exercise 3
+
+- create a line plot for the sepal length against the sepal width of the iris data
+- color the line red
+- change x and y labelling
+- add a title 
+
+```{r}
+#| label: simple plotting 3 
+#| eval: true
+#| echo: true
+
+iris
+
+?plot 
+
+```
+
+Take 15 minutes
+
+## Let`s try! -- Exercise 3 -- solution
+
+- create a point plot for the sepal length against the sepal width of the iris data
+- color the points red
+- change x and y labeling
+- add a title 
+- change the type of points
+
+```{r}
+#| label: simple plotting solution
+#| eval: true
+#| echo: true
+
+plot(iris$Sepal.Length, iris$Sepal.Width, 
+     type = "p", # plot points ("l" would give a line)
+     pch = 4, # change the type of points
+     col = "red", # color the points red
+     xlab = "length", # change the x label
+     ylab = "width", # change the y label 
+     main = "Simple example plot") # add tittle
+
+```
+
+Take 15 minutes
+
 ## Packages
 
 Get access to specific set of functions
@@ -406,6 +488,10 @@ library(tidyverse)
 run "library()" every time you want to use any function from this package
 
 Let's try!
+
+
+
+
 
 # Get your data in R
 
@@ -450,6 +536,6 @@ library(utils)
 
 tibble / dataframe / matrix / array 
 
-## Introduction to simple plots
+
 
 
