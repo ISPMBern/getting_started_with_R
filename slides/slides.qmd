@@ -121,7 +121,7 @@ Did you all manage to install R and RStudio?
 * Repeat code (reproducible science)
 :::
 :::{}
-Now, you can download, save and open the "follow_along_script_monday_morning.R"
+Now, you can download, save and open the "follow_along_script.R"
 :::
 
 ## Code and comments 
@@ -635,13 +635,9 @@ setwd("/Users/jb22m516/Documents/GitHub/getting_started_with_R/")
 
 -  Replace "d_proj" with the path to your folder. 
 
--  Run the code. 
+-  Run the code + check if result is correct.
 
--   Check in your folder if the structure was created. 
-
--   Check if your project root directory is set to the path you want it to be.
-
--  Save the script with a name of your choice in the folder "03_script". Click on File -\> Save as... -\> navigate to 03_script.
+-  Save the script with a name of your choice in the folder "03_script".
 
 ```{r}
 #| label: setup directory
@@ -729,7 +725,7 @@ nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), na = c("NA", "99"))
 
 ```
 
-## alternative functions for loading data
+## Alternative functions for loading data
 
 There are other packages and functions for importing other data formats. Most common are:
 
@@ -1884,7 +1880,7 @@ df <- df %>%
 
 ```
 
-### Exercise 13: Class conversions
+## Exercise 13: Class conversions
 
 Work again with your dataframe "ds" and assign all operations to the dataframe "ds".
 
@@ -1895,6 +1891,8 @@ Work again with your dataframe "ds" and assign all operations to the dataframe "
     -   `1`: "current smoker"
 
 2.  Convert the variable `bp_category` from string to factor variable. Order the levels the following: "normal", "elevated", "hypertension".
+
+## Exercise 13: Class conversions -- solution 
 
 ```{r}
 #| eval: true
@@ -2456,6 +2454,9 @@ To assess associations between categorical variables, you need contigency tables
 **Base R**
 
 ```{r}
+#| eval: true
+#| output: true
+#| echo: true
 
 # Frequency table of age_group and BMI_category
 table(df$age_group_three, df$BMI_category)
@@ -2472,7 +2473,7 @@ prop.table(table(df$age_group_three, df$BMI_category), margin = 1)
 
 ```{r}
 #| eval: true
-#| output: false
+#| output: true
 #| echo: true
 
 # BMI category by age group
@@ -2488,7 +2489,7 @@ table1(~ BMI_category | age_group_three,
 
 ```{r}
 #| eval: true
-#| output: false
+#| output: true
 #| echo: true
 
 # BMI category by age group
@@ -2504,13 +2505,16 @@ ctable(df$BMI_category, df$age_group_three,
 
 ## Exercise 17: Cross-tabulations
 
-Using your dataset ds, create a contigency table of `bp_category` and `smoker_status`. Calculate column-percentages, and run a chi-square test (remember to drop missings for the chi-square test).
+Using your dataset ds, 
+* create a contigency table of `bp_category` and `smoker_status`. 
+
+* Calculate column-percentages, and run a chi-square test (remember to drop missings for the chi-square test).
 
 ## Exercise 17: Cross-tabulations -- solution 
 
 ```{r}
 #| eval: true
-#| output: false
+#| output: true
 #| echo: true
 
 # Cross-tabulation with ctable of bp_category and smoker_status
