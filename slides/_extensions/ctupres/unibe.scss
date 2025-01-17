@@ -19,7 +19,7 @@ $font-family-monospace: 'Fira Code', monospace  !default;
 $code-block-bg: #ffffff; //white
 
 // general  
-$body-bg: #ededed; // light grey
+$body-bg: #ffffff; // light grey
 $body-color: #000000; // white
 $link-color: #e4003c; //unibeRed
 $presentation-font-size-root: 35px;
@@ -27,7 +27,7 @@ $selection-bg: #e4003c;
 
 /*-- scss:rules --*/
 .reveal pre code {
-  background-color: #f8f8f8; // red
+  background-color: #ffffff; // red would be:  #f8f8f8
   font-size: 1em;
   padding: 0.5em;
   line-height: 1.2em;

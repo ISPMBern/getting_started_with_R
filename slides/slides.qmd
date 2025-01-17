@@ -1,0 +1,2520 @@
+---
+title: "Getting started with R"
+subtitle: "From the very basics"
+author: "Dr. Carina Nigg & dr. Judith Bouman"
+format: ctupres-revealjs
+# footer: |
+#         CTU Bern theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html).
+#         Code available on [GitHub](https://github.com/aghaynes/CTUquarto).
+chalkboard: false
+self-contained: true
+---
+
+```{r}
+#| eval: true
+#| echo: false
+
+setwd("/Users/jb22m516/Documents/GitHub/getting_started_with_R/exercises/")
+
+```
+
+# Introduction
+
+## Disclaimer
+
+::: {}
+This is an introduction course and we expect no prior knowledge 
+:::
+::: {}
+Adjust your speed to your own level  
+:::
+::: {}
+Ask questions at any time
+:::
+::: {}
+Tell us if you are bored or overwhelmed
+:::
+
+## Course content
+
+::: columns
+::: column
+*Introduction to R and RStudio*
+
+-   Understanding R and RStudio
+-   Using basic functions
+-   Writing a first script
+-   Understanding packages
+-   Importing data
+-   Using basic functions on imported data
+:::
+
+::: column
+*Data analyses cookbook*
+
+-   Organizing your data
+-   Loading your data into R
+-   Providing an overview of your data
+-   Inspecting missing data
+-   Checking plausibility of your data
+:::
+:::
+
+## The program
+
+| Time | Topic | 
+|-------|---------------|
+| 27th 9.15 - 11.00     | Introduction to R, Rstudio, functions, Rscript | 
+| 27th 11.00 - 11.15    | Coffee break | 
+| 27th 11.15 - 12.00    | Create simple plots with base R | 
+| 27th 12.00 - 13.00    | Lunch break |
+| 27th 13.00 - 13.45    | How to import data | 
+| 27th 13.45 - 14.45    | Data inspection |
+| 27th 14.45 - 15.00    | Coffee break | 
+| 27th 15.00 - 16.55    | Preparing data for analysis | 
+| 27th 16.55 - 17.00    | Explain graded exercise | 
+| 28th 9.15 - 12.15     | Repetition of Monday & Work on graded exercise  | 
+
+## Final exercise 
+
+There will be a final graded exercise (pass / fail 0.5 ECT).
+
+We will explain the exercise at the end of today and you can work on it tomorrow morning. 
+
+The deadline for handing in the exercise is XX. 
+
+## Why learn R?
+
+-   Reproducibility of your results
+-   Free software (unlike stata or SPSS)
+-   A lot of resources available
+-   Potentially useful in further career
+
+## Installing R and RStudio
+
+Did you all manage to install R and RStudio?
+
+## Difference R and RStudio
+
+![](figures/Rstudio_to_R.png)
+
+## Opening RStudio
+
+![](figures/RStudio_Screenshot_Labels.png)
+
+## Simple calculator
+
+```{r}
+#| label: simple calculator
+#| eval: true
+#| echo: true
+
+1 + 1 
+
+```
+
+## Using a script
+
+:::{}
+* Track code
+* Make changes
+* Repeat code (reproducible science)
+:::
+:::{}
+Now, you can download, save and open the "follow_along_script_monday_morning.R"
+:::
+
+## Code and comments 
+
+"#" can be use to add text and comments 
+ 
+```{r}
+#| label: simple calculator 2
+#| eval: true
+#| echo: true
+
+# Use "#" to add text and explanations to your code 
+
+```
+
+## Keyboard shortcuts
+
+- Run the current line or selection: Ctrl + Enter / Command + Enter
+- Run all code in the script: Ctrl + Alt + R / Command + shift + Enter
+- Interrupt running code: Esc
+- Comment/uncomment lines: Ctrl + Shift + C / Command + shift + C
+
+## Saving "objects"
+
+```{r}
+#| label: save object
+#| eval: true
+#| echo: true
+
+a = 1 
+b = 2
+c = a + b
+
+# can use = or "<-"
+
+c <- a + b 
+
+c
+
+```
+
+Why could this be helpful? 
+
+## Example "objects"
+
+```{r}
+#| label: example object
+#| eval: true
+#| echo: true
+
+data = c(1,13,2,1,43,53,1,2,34,54,2,4,6,23)
+
+cutoff = 10 
+
+data[data>cutoff]
+
+```
+
+## Using "functions"
+
+![](figures/function_explanation.png)
+
+## Using "functions"
+
+Input(s) are called "arguments"
+
+```{r}
+#| label: using functions
+#| eval: true
+#| echo: true
+
+sum(1, 2)
+
+sum(a , b)
+
+```
+
+## Getting help with functions
+
+To find out what arguments the function requires
+
+```{r}
+#| label: using functions 2
+#| eval: true
+#| echo: true
+
+?sum
+
+```
+
+
+## Vector
+
+c combines its arguments
+
+```{r}
+#| label: introduce vector
+#| eval: true
+#| echo: true
+
+c(1,2,3)
+
+c(a, b)
+
+```
+
+## Vector
+
+How to access an element in the vector
+
+```{r}
+#| label: introduce vector 2
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+a_vector[4]
+
+```
+
+## Array/matrix
+
+```{r}
+#| label: introduce array/matrix
+#| eval: true
+#| echo: true
+
+matrix(data = c(1,2,3,4,5,6,7,8), nrow = 4 )
+
+```
+
+## Array/matrix
+
+How to access an element from a matrix
+
+```{r}
+#| label: introduce array/matrix 2
+#| eval: true
+#| echo: true
+
+a_matrix = matrix(data = c(1,2,3,4,5,6,7,8), nrow = 4 )
+
+a_matrix[3,2] # first row, then column
+
+```
+
+
+## Using functions -- Exercise 1 
+
+
+Can you calculate the following for "a_vector"?
+
+* Mean
+* Standard deviation
+* Maximal value
+* Minimal value
+* Length of the vector
+
+```{r}
+#| label: using functions 3
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+```
+
+
+## Using functions -- Exercise 1 - Solution
+
+
+```{r}
+#| label: using functions 4
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+mean(a_vector)
+sd(a_vector)
+max(a_vector)
+min(a_vector)
+length(a_vector)
+
+```
+
+
+## Get help for functions -- Exercise 2 
+
+Can you figure out what you can do with the following functions?
+
+* seq()
+* rep()
+
+## Get help for functions -- Exercise 2 - Solution
+
+```{r}
+#| label: using functions 5
+#| eval: true
+#| echo: true
+
+seq(1,10)
+
+seq(1,10, by = 2)
+
+rep(0,100)
+
+```
+
+## Classes and types
+
+Numeric and character
+
+```{r}
+#| label: introduce vectors
+#| eval: true
+#| echo: true
+
+a_vector = c(1.23, 2.34, 6.21, 3.11, 3.412, 4.32, 5.922, 5.65)
+
+class(a_vector)
+
+b_vector = c("something", "something else", "another thing", "completely differnt")
+
+class(b_vector)
+
+```
+
+## Classes and types
+
+Logical
+
+```{r}
+#| label: introduce vector 3
+#| eval: true
+#| echo: true
+
+c_vector = c(F, T, T,T, F, T, F, T)
+
+class(c_vector)
+
+```
+
+
+## Classes and types
+
+factor
+
+```{r}
+#| label: introduce vector 4
+#| eval: true
+#| echo: true
+
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+class(gender)
+
+```
+
+## Combining different types of vectors
+
+Lists
+
+```{r}
+#| label: introduce list
+#| eval: true
+#| echo: true
+
+my_list <- list(name = "Alice", age = 25, scores = c(90, 85, 88))
+
+print(my_list)
+
+```
+
+## Why do we care about classes and types?
+
+- Helpful for plotting --> we come back to this later
+- In functions the class/type of the several input variables are often pre-defined
+
+```{r}
+#| label: wrong class
+#| eval: true
+#| echo: true
+
+#sum(c("Kees", "Klaas", "Jan"))
+
+```
+
+## Data frame 
+
+```{r}
+#| label: dataframe
+#| eval: true
+#| echo: true
+
+# Create a data frame
+df <- data.frame(x = 1:3, y = c("a", "b", "c"))
+
+# Printing
+print(df)
+
+# use one of the inbuilt data frames
+cars
+
+```
+
+## Tibble 
+
+```{r}
+#| label: tibble
+#| eval: true
+#| echo: true
+
+# Create a tibble
+library(tibble)
+tb <- tibble(x = 1:3, y = c("a", "b", "c"))
+
+print(tb)
+
+```
+
+## Introduction to simple plots
+
+
+```{r}
+#| label: simple plotting 1 
+#| eval: true
+#| echo: true
+
+plot(cars$speed, cars$dist)
+
+```
+
+## Introduction to simple plots
+
+
+```{r}
+#| label: simple plotting 2 
+#| eval: true
+#| echo: true
+
+hist(cars$speed)
+
+```
+
+## Plot() -- Exercise 3
+
+- create a point plot for the sepal length against the sepal width of the iris data
+- color the points red
+- change x and y labeling
+- add a title 
+- change the type of points
+
+```{r}
+#| label: simple plotting 3 
+#| eval: true
+#| echo: true
+
+iris
+
+?plot 
+
+```
+
+## plot() -- Exercise 3 -- solution
+
+- create a point plot for the sepal length against the sepal width of the iris data
+- color the points red
+- change x and y labeling
+- add a title 
+- change the type of points
+
+```{r}
+#| label: simple plotting solution
+#| eval: true
+#| echo: true
+
+plot(iris$Sepal.Length, iris$Sepal.Width, 
+     type = "p", # plot points ("l" would give a line)
+     col = "red", # color the points red
+     xlab = "length", # change the x label
+     ylab = "width", # change the y label 
+     main = "Simple example plot", # add tittle
+     pch = 4) # change the type of points 
+
+```
+
+## Packages
+
+Get access to specific set of functions
+
+```{r}
+#| label: packages
+#| eval: true
+#| echo: true
+
+#install.packages("tidyverse")
+library(tidyverse)
+
+```
+
+run "library()" every time you want to use any function from this package
+
+## Help for packages 
+
+-   Using the "Help" rider in the Output pane and typing the package into the search field, which will provide you with a brief description
+
+-   Search for package details online in CRAN
+
+-   Getting the help documentation of the package, which lists all functions and their description
+
+```{r}
+#| label: help packages
+#| eval: false
+#| echo: true
+
+help(package = "tidyverse")
+
+```
+
+## Exercise 4: Install & load package
+
+- Install the package "pacman"
+
+- open the help page for "pacman"
+
+## Exercise 4: Install & load package -- solution 
+
+You can use pacman function "p_load" to load multiple packages at the same time. 
+
+```{r packages}
+#| output: false
+#| label: packages 3
+#| eval: false
+#| echo: true
+
+# Install package
+install.packages("pacman")
+
+# Load package "pacman"
+library(pacman)
+
+# get help 
+help(package = "pacman")
+
+# Load all packages required for this class
+pacman::p_load(tidyverse, haven, table1, readxl, writexl, labelled, summarytools) 
+
+```
+
+# Data analysis cookbook
+
+## Goal of the analysis cookbook
+
+-   Import and inspect data in R
+
+-   Learn the basics of data cleaning and wrangling using tidyverse
+
+-   Implement basic operations and summaries in R
+
+-   Gain hands-on experience through exercises
+
+## Example data
+
+- Data on Covid vaccinations from Basel 
+
+- National survey on health and nutrition in the US (<https://wwwn.cdc.gov/nchs/nhanes/>)
+
+Before downloading data, we organize our directory 
+
+## Set-up R environment
+
+Essential steps to set-up your R-environment include
+
+-   Set directories
+
+-   Load required packages
+
+## Directory structure
+
+-   **01_oridata**: Here you store all original files. DO NOT ALTER THIS DATA! 
+
+-   **02_data**: Altered data.
+
+-   **03_code**: Here you should store all your R-script / markdown / qmd-files etc. In this class, we only work with one script. 
+
+-   **04_output**: Here you store all your output files (e.g., tables, figures).
+
+Use a folder structure, not your desktop!
+
+## Set a working directory
+
+-  Select a folder on your computer where you will set up the mentioned folder structure.
+-  In R, set the working directory to this folder 
+
+```{r}
+#| label: working directory
+#| eval: false
+#| echo: true
+
+getwd() 
+
+setwd("/Users/jb22m516/Documents/GitHub/getting_started_with_R/")
+
+```
+
+## Set directories
+
+-  Copy the code below into your R script.
+
+-  Replace "d_proj" with the path to your folder. 
+
+-  Run the code. 
+
+-   Check in your folder if the structure was created. 
+
+-   Check if your project root directory is set to the path you want it to be.
+
+-  Save the script with a name of your choice in the folder "03_script". Click on File -\> Save as... -\> navigate to 03_script.
+
+```{r}
+#| label: setup directory
+#| eval: true
+#| echo: true
+
+# Set the project root directory
+d_proj <- "/Users/jb22m516/Documents/GitHub/getting_started_with_R/exercises/"
+
+# Basic folders
+# Directory for original data
+d_oridata <- file.path(d_proj, "01_oridata")
+# Directory for edited data
+d_data <- file.path(d_proj, "02_data")
+# Directory for R scripts
+d_code <- file.path(d_proj, "03_code")
+# Directory for R output
+d_output <- file.path(d_proj, "04_output")
+
+
+## This code below creates the folders in case you haven't set them up yet
+# Create a vector with all directories
+dirs <- c(d_oridata, d_data, d_code, d_output)
+
+# Loop through the directories and create them if they don't exist
+for (dir in dirs) {
+  if (!dir.exists(dir)) {
+    dir.create(dir, recursive = TRUE)
+  }
+}
+
+```
+
+## Load library for reading excel files
+
+```{r}
+#| label: load directories 
+#| eval: true
+#| echo: true
+
+library(readxl)
+
+```
+
+## Download data
+
+download "nhanes_for_R.xlsx" and save it to your folder "01_oridata"
+
+## Load data in R
+
+```{r}
+#| label: load directories 2
+#| eval: true
+#| echo: true
+
+nhanes <- read_excel( file.path(d_proj, "/01_oridata/nhanes_for_R.xlsx") ) 
+
+```
+
+## Options for read_excel()
+
+You can specify several options within read_excel() 
+
+```{r}
+#| label: import options
+#| eval: false
+#| echo: true
+
+# sheet: Specify the sheet name or number.
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), sheet = 1)
+
+# range: Import a specific range of cells.
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), range = "A1:D100")
+
+# col_names: Specify if the first row contains column names.
+# TRUE (default): First row is used as column names.
+# FALSE: R assigns default column names (X1, X2, etc.).
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), col_names = FALSE)
+
+# skip: Skip the first n rows
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), skip = 3)
+
+# na: Define missing values.
+nhanes <- read_excel(file.path(d_data, "nhanes_for_R.xlsx"), na = c("NA", "99"))
+
+```
+
+## alternative functions for loading data
+
+There are other packages and functions for importing other data formats. Most common are:
+
+-   **csv-files**: read.csv() (Base R) or read_csv() (readr)
+
+-   **STATA, SAS, SPSS** (haven): read_dta (Stata files), read_sav() (SPSS files), read_sas (SAS files)
+
+## Exercise 5: Import data
+
+1.  Download the data "BMX_J.xpt" from GitHub and put it into your "01_oridata" folder. This is the original data file from the NHANES dataset that contains all body measures (e.g., height, weight).
+
+2.  Find out which package you need to import an xpt-file.
+
+3.  Import the file in R and assign it to the object "nhanes_body".
+
+## Exercise 5: Import data -- solution
+
+1.  Download the data "BMX_J.xpt" from GitHub and put it into your "01_oridata" folder. This is the original data file from the NHANES dataset that contains all body measures (e.g., height, weight).
+
+2.  Find out which package you need to import an xpt-file.
+
+3.  Import the file in R and assign it to the object "nhanes_body".
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+#| label: solution import data 
+
+library(haven)
+
+nhanes_body <- read_xpt(file.path(d_oridata, "BMX_J.xpt"))
+
+```
+
+## Inspecting the data
+
+**Dimensions**: Check number of rows and columns
+
+```{r}
+#| eval: true
+#| output: true
+#| echo: true
+
+# Dimensions (rows and columns)
+dim(nhanes)
+
+# Number of rows only
+nrow(nhanes)
+
+# Number of columns only
+ncol(nhanes)
+```
+
+## Inspecting the data
+
+**Column names**: List the names of all variables
+
+```{r}
+#| eval: true
+#| output: true
+#| echo: true
+
+colnames(nhanes)
+
+```
+
+## Inspecting the data
+
+**Data structure**: Provides overview of dataset structure, including variable types and the first few observations
+
+```{r}
+#| eval: true
+#| output: true
+#| echo: true
+
+# option 1
+str(nhanes)
+
+# option 2
+glimpse(nhanes)
+
+# option 3: This will open the dataset in a separate window with the first couple of hundered of rows and
+view(nhanes)
+
+```
+
+## Inspecting the data
+
+**Quick summary of each variable**: Gives you summary statistics for each column, including missings
+
+```{r}
+#| eval: true
+#| output: true
+#| echo: true
+
+summary(nhanes)
+
+```
+
+## Inspecting the data
+
+**Data preview**: View the first view or last few rows of your dataset
+
+```{r}
+#| eval: true
+#| output: true
+#| echo: true
+
+# first 6 rows
+head(nhanes)
+
+# last 6 rows
+tail(nhanes)
+
+# You can append this argument to specify the first/last number of rows you want to see:
+head(nhanes, n = 10)
+```
+
+## Inspecting the data
+
+**Check class / variable type** of your dataset / columns
+
+```{r}
+#| eval: true
+#| output: true
+#| echo: true
+
+# Class of the entire dataset
+class(nhanes)
+
+# Class of a specific column
+class(nhanes$RIAGENDR)
+
+# Data types of all columns
+sapply(nhanes, class)
+
+```
+
+## Exercise 6: Checking data structure of a dataset
+
+Download the data Covid19_vaccines_Basel. This dataset contains information about the number of Covid-19 vaccinations in the Canton Basel-Citiy between 2 January 2021 and July 1 2023. 
+
+1.  Import the excel file Covid_19_vaccines_Basel.xlsx into R and assign it to the object "covid".
+
+2.  How many columns does the dataset have?
+
+3.  How many rows?
+
+4.  Get an overview/summary of your data.
+
+5.  What is the median number of vaccinations per day? (variable `Vac_perday`)
+
+6.  How many missing values do we have for booster vaccinations? (variable `Total_vacbooster`)
+
+7.  What is the total number of vaccinations in row 14? (variable `Total_vac`)
+
+## Exercise 6: Checking data structure of a dataset -- solution 
+
+```{r exercise 4}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Import the excel file Covid_19_vaccines_Basel into R
+covid <- read_excel(file.path(d_oridata, "Covid19_vaccines_Basel.xlsx"))
+
+# 2. How many columns does the dataset have?
+# 6 columns
+dim(covid)
+ncol(covid)
+
+# 3. How many rows?
+# 915 rows
+dim(covid)
+nrow(covid)
+
+# 4. Use one of the functions to get an overview of your data
+str(covid) # option 1
+glimpse(covid) # option 2
+
+# 5. What is the median of vaccinations per day? (variable Vac_perday)
+# 72 years
+summary(covid)
+
+# 6. How many missings do we have for booster vaccinations? (variable Total_vacbooster)
+# 58
+summary(covid)
+
+# 7. What is the total number of vaccinations in line 14? (variable Total_vac)
+# 15,806
+head(covid, n = 14)
+```
+
+## Inspect missing values
+
+**Check for missing values**: Summarize missing values in the dataset
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Total missing values
+sum(is.na(nhanes))
+
+# Missing values per column
+colSums(is.na(nhanes))
+
+# Missing values for a specific variable
+sum(is.na(nhanes$BMXWT))
+
+```
+
+## Exercise 7: Inspect missing values
+
+1.  Check the number of missing values for all variables in the covid dataset.
+
+2.  Check missings only for total vaccine boosters (variable `Total_vacbooster`).
+
+## Exercise 7: Inspect missing values -- solution
+
+1.  Check the number of missing values for all variables in the covid dataset.
+
+2.  Check missings only for total vaccine boosters (variable `Total_vacbooster`).
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Check the number of missings for the whole covid dataset.
+colSums(is.na(covid))
+
+# 2. Check missings only for total vaccine boosters (variable Total_vacbooster).
+# 684
+sum(is.na(covid$Total_vacbooster))
+
+```
+
+## The tidyverse 
+
+The tidyverse is a collection of R packages designed for data science.
+
+Key Features:
+-   Focus on tidy data principles.
+
+-   Easy-to-use, consistent syntax.
+
+-   Handles data manipulation, visualization, and more.
+
+Core Packages:
+
+-   dplyr (data manipulation)
+
+-   ggplot2 (data visualization)
+
+-   tidyr (data tidying)
+
+-   readr (data import)
+
+-   tibble (modern data frames)
+
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+library(tidyverse)
+
+```
+
+## Why Use the tidyverse?
+
+- Simplifies Workflow: Combines common tasks (e.g., cleaning, analyzing, and visualizing data).
+
+- Consistent Grammar: Shared principles across packages (e.g., "verbs" like filter, select, mutate in dplyr).
+
+- Readable Code: Code becomes intuitive and easier to share or collaborate on.
+
+- Built-in Visualization: ggplot2 helps create high-quality, customizable plots.
+
+## Comparison Base R and tidyverse
+
+We want to:
+
+1.  Filter the rows for all who are males (RIAGENDR == 1)
+
+2.  Calculate the average weight.
+
+[Base R]{.underline}
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+mean(nhanes$BMXWT[nhanes$RIAGENDR == 1], na.rm = TRUE)
+```
+
+[Tidyverse]{.underline}
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+nhanes %>%
+      filter(RIAGENDR == 1) %>%
+      summarize(mean_weight = mean(BMXWT, na.rm = TRUE))
+```
+
+## Explanation tidyverse example
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+nhanes %>%
+      filter(RIAGENDR == 1) %>%
+      summarize(mean_weight = mean(BMXWT, na.rm = TRUE))
+```
+
+-   **nhanes %\>%**:Start with the `nhanes` dataset.
+    
+-   **filter(RIAGENDR == 1) %\>%**: Filter for "RIAGENDR == 1" (male), pass filtered dataset to next function.
+    
+-   **summarize(mean_weight = mean(BMXWT, na.rm = TRUE))**: Calculate mean of `BMXWT` column and store it as `mean_weight`. `na.rm = TRUE` tells R to ignore/remove missing values for this operation.
+
+## The principle of piping
+
+**%\>%**:
+
+1.  **Takes the output from the left**: The value or object on the left side of the pipe is passed as the first argument of the function on the right side.
+
+2.  **Sends it to the next step**: After the function on the right finishes its work, its result is sent as input to the next function in the chain.
+
+3.  **Repeat until done**: This process continues for as many steps as you chain together.
+
+## Tidyverse goal for today
+
+The most commonly used functions in the tidyverse (mostly from "dplyr"):
+
+-   **select:** For selecting columns
+
+-   **filter:** For filtering rows based upon condition(s).
+
+-   **arrange:** For sorting data
+
+-   **rename**: For renaming variables
+
+-   **mutate**: For creating / modifying variables.
+
+-   **group_by** and **summarize**: For aggregating data
+
+-   **class conversions** (e.g., **as.factor**): For converting a variable from one class into another one.
+
+-   **if_else** and **case_if:** For categorizing data
+
+-   **relocate**: For re-ordering variables in a dataframe
+
+-   **relevel**: For setting a reference category.
+
+## Select()
+
+**Selects** specific columns from a dataset, to:
+
+-   reduce the number of columns in a dataset, making it easier to work with
+
+-   reorganize the order of columns
+
+-   exclude specific columns.
+
+From now on, we will only work with a subset of variables from NHANES:
+
+-   `SEQN`: Respondent sequence number.
+
+-   `RIAGENDR`: Gender.
+
+-   `RIDAGEYR`: Age.
+
+-   `BMXWT`: Weight.
+
+-   `BMXHT`: Height.
+
+## Select() -- Examples
+
+**Basic selection**: This is the easiest way to choose your variables - selecting your variables by specific names. This is the dataset we will keep for other examples.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Select specific columns
+df <- nhanes %>%
+      select(SEQN, RIAGENDR, RIDAGEYR, BMXWT, BMXHT)
+
+# Check rows and columns
+dim(df)
+
+# Preview dataset
+head(df)
+
+```
+
+## Select() -- Examples
+
+**Options**: The select-function can do a lot more!
+
+**Reorder columns**: You can reorder columns by specifying the order
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Reorder columns
+dt<- nhanes %>%
+  select(RIDAGEYR, BMXWT, BMXHT, SEQN, RIAGENDR) %>%
+  head %>%
+  print
+```
+
+## Select() -- Examples
+
+**Select columns by range**: Use column positions to select columns
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Select columns by position
+dn <- nhanes %>%
+  select(1:3) %>%
+  head %>%
+  print
+
+# Select consecutive columns using names - same result as above
+dn <- nhanes %>%
+      select(SEQN:RIDAGEYR)
+head(dn)
+```
+
+## Select() -- Examples
+
+**Exclude columns** using the "-" operator
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Exclude specific columns
+dn <- nhanes %>%
+  select(-SEQN:-INDHHIN2)
+
+head(dn)
+```
+
+## Select() -- Examples
+
+**Select columns by pattern:** You can select columns by pattern or name
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Select columns that start with "BMX"
+dn <- nhanes %>%
+  select(starts_with("BMX"))
+head(dn)
+
+# Select columns that contain "AGE"
+dn <- nhanes %>%
+  select(contains("AGE"))
+head(dn)
+
+# Select columns that end with "YR"
+dn <- nhanes %>%
+  select(ends_with("YR"))
+head(dn)
+```
+
+## Exercise 8: Select()
+
+When writing the code for the following exercises, assign them to the object "ds".
+
+1.  From nhanes, select the columns `SEQN`, `RIAGENDR`, and `SMQ040`.
+
+2.  Reorder the columns to: `SMQ040`, `RIAGENDR`, `SEQN`.
+
+3.  Exclude the `BPXSY1` and `BPXDI1` columns.
+
+4.  Select columns that start with `BPX`.
+
+5.  Bring two operations (1. and 2.) together using the pipe:
+
+    a\) Select only the columns `SEQN`, `RIAGENDR`, and `SMQ040`
+
+    b\) Reorder the columns to: `SMQ040`, `RIAGENDR`, `SEQN`
+
+## Exercise 8: Select() -- solution 
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Select only the columns SEQN, RIAGENDR, and SMQ040.
+ds <- nhanes %>%
+            select(SEQN, RIAGENDR, SMQ040)
+
+# 2. Reorder the columns to: SMQ040, RIAGENDR, SEQN.
+ds <- nhanes %>%
+            select(SMQ040, RIAGENDR, SEQN)
+
+# 3. Exclude the BPXSY1 and BPXDI1 columns.
+ds <- nhanes %>%
+            select(-BPXSY1, -BPXDI1)
+
+# 4. Select columns that start with "BPX".
+ds <- nhanes %>%
+            select(starts_with("BPX"))
+
+# 5. Bring two operations together using the pipe
+ds <- nhanes %>%
+            # a) Select only the columns SEQN, RIAGENDR, and SMQ040 
+            select(SEQN, RIAGENDR, SMQ040) %>%
+            # b) Reorder the columns to: SMQ040, RIAGENDR, SEQN
+            select(SMQ040, RIAGENDR, SEQN)
+```
+
+
+## Filter()
+
+`filter()`: select rows in a dataset that meet certain conditions, to:
+
+-   focus on relevant subsets of data for analysis.
+
+-   exclude rows that don't meet certain criteria.
+
+-   explore and validate data by applying logical conditions.
+
+## Filter() -- Examples
+
+**Basic filtering**: Filter rows based on a single condition
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true 
+
+# Filter for males only (RIAGENDR == 1)
+dn <- df %>%
+  filter(RIAGENDR == 1)
+
+head(dn)
+```
+
+## Filter() -- Examples
+
+If you work with variables of the class "factor", you need to put the value (label) in quotation marks:
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true 
+
+dn <- df %>%
+      mutate(RIAGENDR = as.factor(RIAGENDR)) %>% # mutate to factor variable
+      filter(RIAGENDR == "1")
+head(dn)
+```
+
+## Filter() -- Examples
+
+**Filtering with multiple conditions**: Use & for "AND" and \| for "OR" to combine conditions
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Filter for females aged 30 or older
+dn <- df %>%
+  filter(RIAGENDR == 2 & RIDAGEYR >= 30) %>%
+  summary %>%
+  print
+
+# Filter for individuals younger than 18 OR with weight above 80 kg
+dn <- df %>%
+  filter(RIDAGEYR > 18 | BMXWT > 80)
+
+```
+
+## Filter() -- Examples
+
+**Filtering for missing or non-missing data**: To filter rows with missing values or exclude them
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Filter rows where weight is not missing
+dn <- df %>%
+  filter(!is.na(BMXWT)) %>%
+  summary %>%
+  print
+
+# Filter rows where height is missing
+dn <- df %>%
+  filter(is.na(BMXHT)) %>%
+  summary %>%
+  print
+```
+
+## Exercise 9: Filter
+
+1.  From nhanes select the following variables: SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1. Assign them to the object "ds".
+
+    For the following exercises, use the dataset "ds" and assign any operations to the object "dt".
+
+2.  Filter rows where `RIAGENDR` is 2 (female).
+
+3.  Filter rows where `BPXSY1` (systolic blood pressure) is greater than 120 and `BPXDI1` (diastolic blood pressure) is less than 80.
+
+4.  Combine multiple conditions with `|`: Filter rows where `RIAGENDR` is 1 (male) OR `BPXSY1` is greater than 140.
+
+## Exercise 9: Filter -- solution 
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Select the variables SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1
+ds <- nhanes %>%
+            select(SEQN, RIAGENDR, SMQ040, BPXSY1, BPXDI1)
+
+# 2. Filter rows for people who smoke everday (SMQ040 is 1).
+dt <- ds %>%
+  filter(SMQ040 == 1)
+
+# 3. Filter rows where BPXSY1 (systolic blood pressure) is greater than 120
+#    and BPXDI1 (diastolic blood pressure) is less than 80.
+dt <- ds %>%
+  filter(BPXSY1 > 140 & BPXDI1 > 90)
+
+# 4. Combine multiple conditions with |:
+#    Filter rows where RIAGENDR is 1 (male) OR BPXSY1 is greater than 140.
+dt <- ds %>%
+  filter(RIAGENDR == 1 | BPXSY1 > 140)
+
+```
+
+
+## Arrange()
+
+`arrange()` is used to reorder rows in a dataset based on the values in one or more columns. You can sort data in ascending (default) or descending order. You use arrange to:
+
+-   organize data for better readability
+
+-   identify the largest, smallest, or specific range of values
+
+-   prepare data for summary tables or reports
+
+## Arrange() -- Examples
+
+**Basic sorting**: Sort rows in ascending order by a single variable
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Sort by age (ascending order)
+dn <- df %>%
+  arrange(RIDAGEYR) %>%
+  head %>%
+  print
+```
+
+
+## Arrange() -- Examples
+
+**Sorting in descending order**: Use desc() to sort rows in descending order
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Sort by weight (descending order)
+dn <- df %>%
+  arrange(desc(BMXWT))
+
+head(dn)
+```
+
+## Arrange() -- Examples
+
+**Sorting by multiple variables**: You can sort by multiple columns, specifying the order of precedence
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Sort by gender (ascending) and age (descending)
+dn <- df %>%
+  arrange(RIAGENDR, desc(RIDAGEYR))
+
+head(dn)
+```
+
+## Arrange() -- Examples
+
+**Sorting with missing values**: By default, arrange() places missing values (NA) at the end. You can also have them on top if needed.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true 
+
+# Sort by height with NA at the top
+dn <- df %>%
+  arrange(desc(is.na(BMXHT)))
+
+head(dn)
+```
+
+## Exercise 10: Arrange()
+
+Use again your dataset "ds" and assign any operations to "dt":
+
+1.  Sort the dataset by `BPXSY1` (systolic blood pressure) in ascending order.
+
+2.  Sort the dataset by `SMQ040` (smoking status) in descending order.
+
+3.  Filter rows where `BPXDI1` (diastolic blood pressure) is greater than 90 and sort descending by `BPXSY1`.
+
+## Exercise 10: Arrange() -- solution 
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Sort the dataset by BPXSY1 (systolic blood pressure) in ascending order.
+dt <- ds %>%
+  arrange(BPXSY1)
+
+# 2. Sort the dataset by SMQ040 (smoking status) in descending order.
+dt <- ds %>%
+  arrange(desc(SMQ040))
+
+# 3. Filter rows where BPXDI1 (diastolic blood pressure) is greater than 90 and
+#    sort descending by BPXSY1.
+dt <- ds %>%
+  filter(BPXDI1 > 90) %>%
+  arrange(desc(BPXSY1))
+
+```
+
+## Rename()
+
+`rename()` is used to rename variables in a dataset. It allows you to provide new, meaningful names to columns while preserving the dataset's structure. You can use it to:
+
+-   To improve the readability and interpretability of your dataset.
+
+-   To standardize variable names for consistency in analysis.
+
+-   To simplify long or complex variable names.
+
+Aftere the rename examples, we will keep working with the original variable names.
+
+## Rename() -- Examples
+
+**Basic: Renaming one variable**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Rename a single variable
+dn <- df %>%
+      rename(gender = RIAGENDR)
+
+# View the result
+colnames(dn)
+
+```
+
+## Rename() -- Examples
+
+**Renaming multiple single variables at once**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Rename multiple variables
+dn <- df %>%
+    rename(
+      ID = SEQN,
+      gender = RIAGENDR,
+      age = RIDAGEYR,
+      weight = BMXWT,
+      height = BMXHT
+    )
+
+# View the results
+colnames(dn)
+```
+
+## Rename() -- Examples
+
+**Renaming variables based on patterns**: Add a prefix, suffix, or replace variable names that have some common patterns in their name.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Option 1: Add a prefix to all variables
+di <- df %>%
+  rename_with(~ paste0("NHANES_", .))
+
+# View the result
+colnames(di)
+
+# Option 2: Add a suffix "_new" to variables starting with "BMX"
+di <- df %>%
+  rename_with(~ paste0(., "_new"), starts_with("BMX"))
+
+# View the updated column names
+colnames(di)
+
+# Option 3: Replace "BMX" with "body" in variable names
+di <- df %>%
+  rename_with(~ sub("^BMX", "body", .), starts_with("BMX"))
+
+# View the updated column names
+colnames(di)
+```
+
+## Rename() -- Examples
+
+**Optional - Adding variable labels:** If you also want to label your variables, you can use the labelled-package.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+library(labelled)
+
+# Assigning one variable label:
+var_label(dn$gender) <- "Gender of participant"
+# Check the label
+var_label(dn$gender)
+
+# You can also create a list and create multiple variable labels at once and assign them to a variabel:
+var_label(dn) <- list(
+  ID = "Participant id",
+  gender = "Gender of participant",
+  age = "Age at study",
+  weight = "Weight in kg",
+  height = "Height in kg"
+)
+
+# Check labels
+var_label(dn)
+
+```
+
+## Exercise 11: Rename() 
+
+Practice renaming variables using the ds-dataframe. Assign all operations to "dt".
+
+1.  Rename `BPXSY1` to `systolicBP`.
+
+2.  Rename `SMQ040` to `currentSmoker` and `BPXDI1` to `diastolicBP`.
+
+3.  Use `rename_with()` to replace `BPX` with `pressure` in all variables starting with `BPX`.
+
+## Exercise 11: Rename() -- solution
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Rename BPXSY1 to systolicBP.
+dt <- ds %>%
+      rename(systolicBP = BPXSY1)
+
+# 2. Rename SMQ040 to currentSmoker and BPXDI1 to diastolicBP.
+dt <- ds %>%
+  rename(
+    currentSmoker = SMQ040,
+    diastolicBP = BPXDI1
+  )
+
+# 3. Use rename_with() to replace BPX with pressure in all variables starting with BPX.
+dt <- ds %>%
+  rename_with(~ sub("^BPX", "pressure", .), starts_with("BPX"))
+```
+
+
+## Mutate()
+
+`mutate()` is used to create new variables, modify existing ones, and perform calculations on existing data. You can use mutate to:
+
+-   derive new variables for analysis (e.g., calculate BMI)
+
+-   recode or categorize variables (e.g., age groups)
+
+-   perform transformations (e.g., converting units)
+
+## Mutate() -- Examples
+
+**Creating new variables**: Add a new variable. In this example, add the variable BMI (Body Mass Index: body weight in kg / (body height in m) \^2)
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Calculate BMI
+dn <- df %>%
+  mutate(BMI = BMXWT / (BMXHT / 100)^2)
+
+# List column names
+head(dn)
+```
+
+## Mutate() -- Examples
+
+**Modifying existing variables**: In this example, we change age (currently in years) to months. Here, we overwrite the current age-variable. It is recommended to create a new variable
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Convert age to months
+dn <- df %>%
+  mutate(RIDAGEYR = RIDAGEYR * 12) %>%
+  head %>%
+  print
+
+# Convert age to month and create a new variable
+dn <- df %>%
+  mutate(age_months = RIDAGEYR * 12) %>%
+  relocate(age_months, .after = RIDAGEYR) %>% # this function moves one variable after another one
+  head %>%
+  print
+```
+
+## Mutate() -- Examples
+
+**Categorizing variables using if_else**: Especially handy for binary categorizations. You can do more categories by nesting multiple if_else functions.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Categorize age into two categories
+df <- df %>%
+   mutate(age_group_binary = if_else(RIDAGEYR >= 18, "adult", "child"))
+head(dn)
+
+# Categorize age into three categories
+df <- df %>%
+    mutate(age_group_three =
+            if_else(RIDAGEYR < 13, "child", 
+              if_else(RIDAGEYR >= 13 & RIDAGEYR < 18, "teenager", "adult")
+            ))
+head(df)
+
+```
+
+## Mutate() -- Examples
+
+**Categorizing variables using case_when:** For categorizing variables, case_when is more flexibel for multiple conditions (\> 2).
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Categorize BMI
+df <- df %>%
+  mutate(BMI = BMXWT / (BMXHT / 100)^2) %>%
+  mutate(BMI_category = case_when(
+    BMI < 18.5 ~ "underweight",
+    BMI >= 18.5 & BMI < 25 ~ "normal",
+    BMI >= 25 & BMI < 30 ~ "overweight",
+    BMI >= 30 ~ "obese"
+  ))
+
+head(df, n = 20)
+```
+
+## Exercise 12: Mutate()
+
+Use again your dataset "ds" and assign all operations to this dataset (ds).
+
+1.  Create a new variable called `pulse_pressure`, calculated as `BPXSY1 - BPXDI1`.
+
+2.  Create a binary variables `smoker_status` using `if_else()`:
+
+    -   `3` for `SMQ040` (not at all), 1 otherwise (smoking everyday / some days).
+
+3.  Categorize `BPXSY1` (systolic blood pressure) into three groups using `case_when()`.
+
+    -   `< 120`: "normal"
+
+    -   `120-139`: "elevated"
+
+    -   `> 140`: "hypertension"
+    
+## Exercise 12: Mutate() -- solution
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Create Pulse_Pressure variable
+ds <- ds %>%
+  mutate(pulse_pressure = BPXSY1 - BPXDI1)
+
+# 2. Create Smoker_Status using if_else()
+ds <- ds %>%
+  mutate(smoker_status = if_else(SMQ040 == 3, 0, 1))
+
+# 3. Categorize systolic blood pressure using case_when()
+ds <- ds %>%
+  mutate(bp_category = case_when(
+    BPXSY1 < 120 ~ "normal",
+    BPXSY1 >= 120 & BPXSY1 < 140 ~ "elevated",
+    BPXSY1 >= 140 ~ "hypertension"
+  ))
+```
+
+## Class conversions
+
+Class conversions are essential to transform variable types. You use them to:
+
+-   prepare data for analysis (e.g., converting strings to factors for categorical variables).
+
+-   fixing data import issues (e.g., when numeric values are read as characters).
+
+-   customize variable types for specific functions (e.g., some models require factors).
+
+## Class conversions -- Examples
+
+**String (character) to factor**: To convert a character/string into a factor variable.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Example: Convert BMI (character) to a factor
+df <- df %>%
+  mutate(BMI_category = as.factor(BMI_category))
+
+# Check the class of the variable
+class(df$BMI_category)
+levels(df$BMI_category)
+
+```
+
+## Class conversions -- Examples
+
+R orders the levels alphabetically if not specified otherwise. We can specify the level order using an adapted code:
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+df <- df %>%
+        mutate(BMI_category = factor(BMI_category,
+                                     levels = c("underweight", "normal", "overweight", "obese")))
+
+# Check the class of the variable
+class(df$BMI_category)
+levels(df$BMI_category)
+
+
+# Optional: If you want to set a different reference category, you can use the relevel() function
+dn <- df %>%
+        mutate(BMI_category = relevel(BMI_category, ref = "normal"))
+levels(dn$BMI_category)
+```
+
+## Class conversions -- Examples
+
+**Numeric to factor:** Useful for categorical variables stored as numbers.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Example: Convert Gender (numeric) to a factor
+dn <- df %>%
+  mutate(RIAGENDR = as.factor(RIAGENDR))
+class(dn$RIAGENDR)
+levels(dn$RIAGENDR)
+
+# Optionally, you can also assign value labels
+df <- df %>%
+      mutate(RIAGENDR = factor(RIAGENDR,
+                               levels = c(1, 2),
+                               labels = c("male", "female")))
+# Check the result
+class(df$RIAGENDR)
+levels(df$RIAGENDR)
+nlevels(df$RIAGENDR) # Gives you the number of levels
+```
+
+## Class conversions -- Examples
+
+**Factor to numeric**: When you import datasets, it can happen that a numeric variable is recognized as a factor variable, which you then have to change:
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+df <- df %>%
+  mutate(RIAGENDR_incorrect = as.numeric(RIAGENDR))
+head(df)
+
+# Drop again
+df <- df %>%
+  select(- RIAGENDR_incorrect)
+
+```
+
+### Exercise 13: Class conversions
+
+Work again with your dataframe "ds" and assign all operations to the dataframe "ds".
+
+1.  Convert smoker_status from numeric to a factor with the following labels:
+
+    -   `0`: "no smoker"
+
+    -   `1`: "current smoker"
+
+2.  Convert the variable `bp_category` from string to factor variable. Order the levels the following: "normal", "elevated", "hypertension".
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Convert SMQ040 (smoking status) from numeric to a factor with the following labels:
+ds <- ds %>%
+  mutate(smoker_status = factor(smoker_status,
+                        levels = c(0, 1),
+                        labels = c("no smoker", "current smoker")))
+
+# 2. Convert the variable bp_category from string to factor variable. Order the levels the following: "normal", "elevated", "high".
+ds <- ds %>%
+  mutate(bp_category = factor(bp_category,
+                              levels = c("normal", "elevated", "hypertension")))
+
+```
+
+
+## Exploring the data
+
+Now that you prepared your dataset for analysis, we can run exploratory data analysis. We do this to uncover patterns, spot anomalies, and summarize its key characteristics. It usually involves:
+
+-   **Descriptive statistics**: Summarizing individual variables (e.g., mean and median)
+
+-   **Visualizations**: Exploring distributions and relationships between variables (e.g., boxplot, correlation matrix)
+
+-   **Group comparisons**: Comparing metrics across different categories (e.g., cross-tabulations, mean by group).
+
+We will use different packages for exploratory data analysis including tidyverse, which you already know, and the packages "table1" and "summarytools".
+
+## Simple descriptive statistics
+
+We will calculate some basic descriptive statistics for numeric and factor variables. There are various ways of doing this in R, we will show you a couple of options with Base R, tidyverse, and summarytools.
+
+## Simple descriptive statistics: Numeric variables
+
+**Base R**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Summary function for an overview of a single variable
+summary(df$RIDAGEYR, na.rm = FALSE)
+
+# Individual calculations
+min(df$RIDAGEYR, na.rm = TRUE)    # Minimum age
+mean(df$RIDAGEYR, na.rm = TRUE)   # Mean age
+median(df$RIDAGEYR, na.rm = TRUE) # Median age
+max(df$RIDAGEYR, na.rm = TRUE)    # Maximum age
+```
+
+## Simple descriptive statistics: Numeric variables
+
+**tidyverse**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# calculate basic descriptive statistics for one variable
+df %>%
+  summarize(
+    Min_Age = min(RIDAGEYR, na.rm = TRUE),
+    Mean_Age = mean(RIDAGEYR, na.rm = TRUE),
+    Median_Age = median(RIDAGEYR, na.rm = TRUE),
+    Max_Age = max(RIDAGEYR, na.rm = TRUE)
+  )
+
+# calculate basic descriptive statistics for multiple variables
+df %>%
+  summarize(
+    across(
+      c(RIDAGEYR, BMXWT, BMXHT),
+      list(
+        Min = ~ min(.x, na.rm = TRUE),
+        Mean = ~ mean(.x, na.rm = TRUE),
+        Median = ~ median(.x, na.rm = TRUE),
+        Max = ~ max(.x, na.rm = TRUE)
+      ),
+      .names = "{.col}_{.fn}"
+    )
+  )
+
+# The .names argument controls how the new column names are generated:
+# {.col} refers to the variable name (e.g., Variable1).
+# {.fn} refers to the function name (e.g., Min, Mean, etc.).
+# This ensures the output columns have clear and unique names.
+```
+
+## Simple descriptive statistics: Numeric variables
+
+**summarytools**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+library(summarytools)
+
+# Detailed descriptive statistics for RIDAGEYR (Age)
+summarytools::descr(df$RIDAGEYR)
+```
+
+## Simple descriptive statistics: Factor variables
+
+**Base R**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Frequency counts for gender
+table(df$RIAGENDR)
+
+# Proportions (relative frequencies)
+prop.table(table(df$RIAGENDR))
+
+```
+
+## Simple descriptive statistics: Factor variables
+
+**tidyverse**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Frequency counts for RIAGENDR (Gender)
+df %>%
+  count(RIAGENDR)
+
+# Add proportions
+df %>%
+  count(RIAGENDR) %>%
+  mutate(Proportion = n / sum(n)) #  # calculates the proportion of each category relative to the total count of observations
+
+```
+
+## Simple descriptive statistics: Factor variables
+
+**summarytools**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+freq(df$RIAGENDR)
+
+```
+
+## Simple descriptive statistics: Numeric & factor variables
+
+If you want to create a more comprehensive overview of both numeric and factor variables, the packages summarytools and table 1 can be very helpful.
+
+**table1**: This is a useful function to create an overview of various variable types, and is a great format that you can also export to a word document.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+library(table1)
+
+# Descriptives for age, gender, BMI, and BMI category
+table1(~ RIAGENDR + RIDAGEYR + BMI + BMI_category,
+        data = df)
+
+# Descriptives and omitting missings for each variable
+table1(~ RIAGENDR + RIDAGEYR + BMI + BMI_category,
+        data = df,
+        render.missing = NULL)
+
+```
+
+## Simple descriptive statistics: Numeric & factor variable
+
+**summarytools**: The function "dfSummary" creates a comprehensive overview of dataframe, including basic descriptive statistics, value codings, histogramms / bar plots, and missings.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Summary of dataframe df
+dfSummary(df)
+
+# Summary of dataframe df as html-output
+view(dfSummary(df))
+
+```
+
+## Exercise 14: Simple descriptive statistics
+
+Use your dataframe ds for the following exercises.
+
+1.  Calculate basic descriptive statistics (minimum, mean, median, and maximum) for the following numeric variables: `BPXSY1` (systolic blood pressure), `BPXDI1` (diastolic blood pressure).
+
+2.  Summarize frequencies and proportions for `bp_category` (blood pressure category) and `smoker_status`.
+
+## Exercise 14: Simple descriptive statistics -- solution 
+
+**Base R**:
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Calculate basic descriptive statistics (minimum, mean, median, and maximum) for the following numeric variables: BPXSY1 (systolic blood pressure), BPXDI1 (diastolic blood pressure).
+
+# BPXSY1 (Systolic blood pressure)
+summary(ds$BPXSY1)
+min(ds$BPXSY1, na.rm = TRUE)
+mean(ds$BPXSY1, na.rm = TRUE)
+median(ds$BPXSY1, na.rm = TRUE)
+max(ds$BPXSY1, na.rm = TRUE)
+
+# BPXDI1 (Diastolic blood pressure)
+summary(ds$BPXDI1)
+min(ds$BPXDI1, na.rm = TRUE)
+mean(ds$BPXDI1, na.rm = TRUE)
+median(ds$BPXDI1, na.rm = TRUE)
+max(ds$BPXDI1, na.rm = TRUE)
+
+# 2. Summarize frequencies and proportions for bp_category (blood pressure category) and smoker_status.
+
+# Frequency and proportions for bp_category
+table(ds$bp_category)
+prop.table(table(ds$bp_category))
+
+# Frequency and proportions for smoker_status
+table(ds$smoker_status)
+prop.table(table(ds$smoker_status))
+
+```
+
+## Exercise 14: Simple descriptive statistics -- solution 
+
+**Tidyverse**:
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Calculate basic descriptive statistics (minimum, mean, median, and maximum) for the following numeric variables: BPXSY1 (systolic blood pressure), BPXDI1 (diastolic blood pressure).
+
+## tidyverse
+
+ds %>% # specifying for each variable on its own
+  summarize(
+    Min_Systolic = min(BPXSY1, na.rm = TRUE),
+    Mean_Systolic = mean(BPXSY1, na.rm = TRUE),
+    Median_Systolic = median(BPXSY1, na.rm = TRUE),
+    Max_Systolic = max(BPXSY1, na.rm = TRUE),
+    Min_Diastolic = min(BPXDI1, na.rm = TRUE),
+    Mean_Diastolic = mean(BPXDI1, na.rm = TRUE),
+    Median_Diastolic = median(BPXDI1, na.rm = TRUE),
+    Max_Diastolic = max(BPXDI1, na.rm = TRUE)
+  )
+
+
+ds %>% # using summarize across
+  summarize(
+      across(
+        c(BPXSY1, BPXDI1),
+          list(
+            Min = ~ min(.x, na.rm = TRUE),
+            Mean = ~ mean(.x, na.rm = TRUE),
+            Median = ~median(.x, na.rm = TRUE),
+            Max =  ~max(.x, na.rm = TRUE)
+          ),
+        .names = "{.col}_{.fn}")
+     )
+
+# 2. Summarize frequencies and proportions for bp_category (blood pressure category) and smoker_status.
+
+## tidyverse
+
+# Frequency and proportions for bp_category
+ds %>%
+  count(bp_category) %>%
+  mutate(Proportion = n / sum(n))
+
+# Frequency and proportions for smoker_status
+ds %>%
+  count(smoker_status) %>%
+  mutate(Proportion = n / sum(n))
+
+```
+
+## Exercise 14: Simple descriptive statistics -- solution 
+
+**Summarytools and table1**:
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Calculate basic descriptive statistics (minimum, mean, median, and maximum) for the following numeric variables: BPXSY1 (systolic blood pressure), BPXDI1 (diastolic blood pressure).
+
+descr(ds$BPXSY1)
+descr(ds$BPXDI1)
+
+# 2. Summarize frequencies and proportions for bp_category (blood pressure category) and smoker_status.
+
+freq(ds$bp_category)
+freq(ds$smoker_status)
+
+## Tasks 1 & 2 together
+
+# using table1
+table1(~ BPXSY1 + BPXDI1 + bp_category + smoker_status,    data = ds)
+
+# using summarytools
+dfSummary(ds)
+
+```
+
+
+## Visual inspection
+
+While descriptive statistics are helpful, any exploratory data analysis requires visual inspection to
+
+-   explore variable distributions
+
+-   assess the spread of data and outliers
+
+-   examine relationships between two numeric variables
+
+-   visualize categorical data
+
+**Note on visualizations**: Here, we will use baseR for simplicity. However, tidyverse (ggplot2) can also be used. 
+
+## Visualisation: Histograms
+
+Histograms display the distribution of a numeric variable by dividing it into intervals (bins) and showing the frequency of observations in each interval.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Basic version
+hist(df$BMI)
+
+# Plot with some specifications
+hist(
+  df$BMI,
+  main = "Distribution of BMI",
+  xlab = "BMI",
+  col = "skyblue",
+  border = "white"
+)
+```
+
+## Visualisation: Boxplots
+
+Boxplots summarize the distribution of a numeric variable, highlighting median, quartiles, and potential outliers.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Basic boxplot
+boxplot(df$BMI)
+
+# Boxplot stratified and adapted (BMI by age group)
+boxplot(
+  BMI ~ age_group_three,
+  data = df,
+  main = "BMI by Gender",
+  xlab = "Age group",
+  ylab = "BMI",
+  col = c("lightblue", "lightgreen", "lightyellow")
+)
+```
+
+## Visualisation: Scatterplot
+
+Scatterplots are used to explore relationships between two numeric variables.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Basic scatterplot
+plot(df$BMXHT, df$BMXWT)
+
+# Scatterplot with some specifications
+plot(
+  df$BMXHT, df$BMXWT,
+  main = "Scatterplot Height vs. Weight",
+  xlab = "Height (cm)",
+  ylab = "Weight (kg)",
+  col = "darkgreen",
+  pch = 19 # with this number you can specify the shape of the points
+)
+
+```
+
+## Visualisation: Bar charts
+
+Bar charts are used to visualize frequencies of categorical variables.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Basic bar chart
+barplot(table(df$BMI_category))
+
+# Bar chart with some specifications
+barplot(table(df$BMI_category),
+  main = "BMI Categories",
+  xlab = "BMI Category",
+  ylab = "Count",
+  col = c("orange", "yellow", "red", "green")
+)
+
+
+```
+
+## Exercise 15: Visualizations
+
+1.  Create a histogram for `BPXSY1` (systolic blood pressure).
+2.  Create a boxplot for `BPXSY1` (diastolic blood pressure) and stratify by `smoker_status`. Title the figure "Blood pressure and smoker status". Label the x-axis "Smoking status", the y-axis "Systolic blood pressure". Color the boxplots in blue and yellow.
+3.  Create a scatterplot showing the relationship between `BPXSY1` (systolic blood pressure) and `BPXDI1` (diastolic blood pressure).
+4.  Create a bar chart for `bp_category` (blood pressure category).
+
+## Exercise 15: Visualizations -- solution
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Create a histogram for BPXSY1 (systolic blood pressure).
+hist(ds$BPXSY1)
+
+# 2. Create a boxplot for BPXSY1 (diastolic blood pressure) and stratify by smoker_status. Title the figure "Blood pressure and smoker status". Label the x-axis "Smoking status", the y-axis "Systolic blood pressure". Color the boxplots in blue and yellow.
+boxplot(
+  BPXSY1 ~ smoker_status,
+  data = ds,
+  main = "Blood pressure and smoker status",
+  xlab = "Smoker status",
+  ylab = "Systolic blood pressure",
+  col = c("blue", "yellow")
+)
+
+# 3. Create a scatterplot showing the relationship between BPXSY1 (systolic blood pressure) and BPXDI1 (diastolic blood pressure).
+plot(ds$BPXSY1, ds$BPXDI1)
+
+# 4. Create a bar chart for bp_category (blood pressure category).
+barplot(table(ds$bp_category))
+
+```
+
+## Descriptives by group
+
+Sometimes you may want to explore descriptives separately for groups. We will go through
+
+-   grouping data by one or more categorical variables.
+
+-   calculate descriptive statistics (e.g., mean, median) for numeric variables within groups
+
+-   optionally include statistical tests for group differences
+
+## Descriptives by group: Examples
+
+tidyverse and table1 are two helpful packages for calculating descriptives for each group.
+
+**tidyverse**: In tidyverse, you can use the group_by() function to arrange data based upon a factor variable (e.g., age group), and to then calculate descriptives for each group.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Grouped summaries for BMI and BMXWT by age group
+
+df %>%
+  group_by(age_group_three) %>%
+  summarize(
+    Mean_BMI = mean(BMI, na.rm = TRUE),
+    Median_BMI = median(BMI, na.rm = TRUE),
+    Mean_Weight = mean(BMXWT, na.rm = TRUE),
+    Median_Weight = median(BMXWT, na.rm = TRUE),
+    Count = n()
+  )
+```
+
+## Descriptives by group: Examples
+
+**table1**: You can also use table 1 to stratify calculations by certain groups, using the "\|" operator.
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Summary table for BMI and BMXWT grouped by age_group and with testing
+table1(~ BMI + BMXWT | age_group_three,
+       data = df)
+
+```
+
+## Exercise 16: Descriptives by group
+
+1.  Use tidyverse to
+    -   filter for participants without missings for `BPXSY1`
+
+    -   group the dataset by `bp_category`
+
+    -   calculate the mean and median for `BPXSY1` (systolic blood pressure)
+2.  Using table1, create a summary table for `pulse_pressure` stratified by `RIAGENDR`.
+
+## Exercise 16: Descriptives by group -- solution
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# 1. Use tidyverse to filter for participants without missings for BPXSY1, group the dataset by bp_category calculate the mean and median for BPXSY1 (systolic blood pressure)
+ds %>%
+  filter(!is.na(BPXSY1)) %>%
+  group_by(bp_category) %>%
+  summarize(
+    mean_Systolic = mean(BPXSY1, na.rm = TRUE),
+    median_Systolic = median(BPXSY1, na.rm = TRUE),
+    count = n()
+  )
+
+# 2. Using table1, create a summary table for pulse_pressure stratified by RIAGENDR
+table1(~ pulse_pressure | RIAGENDR,
+       data = ds)
+```
+
+## Cross-tabulations
+
+To assess associations between categorical variables, you need contigency tables or cross-tabulations. To do those, you can again work with Base R, tidyverse, and summarytools.
+
+## Cross-tabulations: Examples
+
+**Base R**
+
+```{r}
+
+# Frequency table of age_group and BMI_category
+table(df$age_group_three, df$BMI_category)
+
+# Proportion table
+prop.table(table(df$age_group_three, df$BMI_category), margin = 1)
+# margin = 1 gives you row-wise proportions, margin = 2 column-wise proportions
+
+```
+
+## Cross-tabulations: Examples
+
+**table1**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# BMI category by age group
+table1(~ BMI_category | age_group_three,
+       render.missing = NULL, # take this out if you also want to see the missings
+       data = df)
+
+```
+
+## Cross-tabulations: Examples
+
+**summarytools**
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# BMI category by age group
+ctable(df$BMI_category, df$age_group_three, prop = "r")
+
+# You can also drop missing, use column percentages and add a chi-square test
+ctable(df$BMI_category, df$age_group_three,
+       useNA = "no",
+       prop = "c",
+       chisq = TRUE)
+
+```
+
+## Exercise 17: Cross-tabulations
+
+Using your dataset ds, create a contigency table of `bp_category` and `smoker_status`. Calculate column-percentages, and run a chi-square test (remember to drop missings for the chi-square test).
+
+## Exercise 17: Cross-tabulations -- solution 
+
+```{r}
+#| eval: true
+#| output: false
+#| echo: true
+
+# Cross-tabulation with ctable of bp_category and smoker_status
+ctable(ds$bp_category, ds$smoker_status, prop = "c", useNA = "no", chisq = TRUE)
+```
+
+
