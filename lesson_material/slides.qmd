@@ -131,6 +131,8 @@ Did you all manage to install R and RStudio?
 :::
 :::{}
 Now, you can download, save and open the "follow_along_script.R"
+
+You can find it [here](https://github.com/ISPMBern/getting_started_with_R/blob/7cb39efac1a7fa58a50abec50df34480021e6f81/lesson_material/exercises/03_code/follow_along_script.R): getting_started_with_R/lesson_material/exercises/03_code. 
 :::
 
 ## Code and comments 
@@ -496,7 +498,7 @@ iris
 
 ```
 
-## plot() -- Exercise 3 -- solution
+## Plot() -- Exercise 3 -- solution
 
 - create a point plot for the sepal length against the sepal width of the iris data
 - color the points red
@@ -694,6 +696,9 @@ library(readxl)
 ## Download data
 
 download "nhanes_for_R.xlsx" and save it to your folder "01_oridata"
+
+You can find it [here](https://github.com/ISPMBern/getting_started_with_R/blob/7cb39efac1a7fa58a50abec50df34480021e6f81/lesson_material/exercises/01_oridata/nhanes_for_R.xlsx):
+lesson_material/exercises/01_oridata
 
 ## Load data in R
 
