@@ -1,0 +1,98 @@
+
+/*-- scss:defaults --*/
+// importing fonts
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+// fonts
+$font-family-sans-serif: Arial, Helvetica, sans-serif !default;
+
+// headings
+$presentation-heading-font: Arial, Helvetica, sans-serif !default;
+$presentation-heading-color: #e4003c !default; //unibeRed
+$h1-font-size: 1.6em !default;
+$h2-font-size: 1.3em !default;
+$h3-font-size: 1.15em !default;
+
+//code
+$code-color: #8a1e22 !default;
+$font-family-monospace: 'Fira Code', monospace  !default;
+$code-block-bg: #ffffff; //white
+
+// general  
+$body-bg: #ffffff; // light grey
+$body-color: #000000; // white
+$link-color: #e4003c; //unibeRed
+$presentation-font-size-root: 35px;
+$selection-bg: #e4003c;
+
+/*-- scss:rules --*/
+.reveal pre code {
+  background-color: #ffffff; // red would be:  #f8f8f8
+  font-size: 1em;
+  padding: 0.5em;
+  line-height: 1.2em;
+}
+
+
+.subtitle {
+  color: $body-color;
+  font-size: $h2-font-size;
+  font-family: $presentation-heading-font;
+}
+
+.author {
+  color: $body-color;
+  font-size: $h2-font-size;
+  font-family: $presentation-heading-font;
+}
+
+.footer {
+  font-family: $presentation-heading-font;
+}
+
+.reveal .slide-number {
+  font-family: $presentation-heading-font;
+}
+
+.reveal .panel-tabset [role=tab] {
+    font-size: 0.8em;
+}
+
+.reveal .footer {
+    color: #9d709e;
+}
+
+.center-x{
+    text-align: center;
+}
+
+section.has-dark-background a, section.has-dark-background a:hover {
+    color: #c2b600; // mustard
+}
+
+
+.slide-logo {
+  display: block !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: 10px !important;
+  max-height: 15% !important;
+  height: 100% !important;
+  width: auto !important;
+  color: $body-color !important;
+}
+
+.slide-number, .reveal.has-logo .slide-number {
+  bottom: 10px !important;
+  right: 10px !important;
+  top: unset !important;
+  color: $body-color !important;
+}
+
+// unibe colours for code elements
+.fu { // functions
+  color: #466553 !important; // unibeGreen
+}
+.st { // strings
+  color: #007ea2 !important; // unibeSaphire
+}
